@@ -1,0 +1,3 @@
+[submodule "ARM_Firmware/pca10059_PiCam"]
+	path = ARM_Firmware/pca10059_PiCam
+	url = https://github.com/TESTgroup-BNL/pca10059_PiCam.git
