@@ -1,0 +1,8 @@
+Unless otherwise specified, all software is covered by GNU GPLv3 and all hardware is covered by CERN OHL v2 Strongly Reciprocal.
+
+Exceptions:
+Nordic SoftDevice: 0333.5_Clause_Nordic_License
+wiring_analog.h: lgpl-3.0
+wiring_analog_nRF52.c: lgpl-3.0
+picam-dashboard_v2.html: MIT
+Raspberry Pi GPU firmware, bootloader, binaries (raspistill): Broadcom/Raspberry Pi Foundation License

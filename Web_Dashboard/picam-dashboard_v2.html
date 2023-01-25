@@ -1,0 +1,2317 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PiCam Web Bluetooth Dashboard</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+      // Redirect to HTTPS if HTTP is requested.
+      if (window.location.protocol === 'http:') {
+        window.location.href = 'https:' + window.location.href.substring(5);
+      }
+    </script>    
+    <!-- import Chart.js library via CDN, per Chart.js documentation -->
+    <script defer>
+      /*! colorjoe - v4.1.1 - Juho Vepsalainen <bebraw@gmail.com> - MIT
+      https://bebraw.github.com/colorjoe - 2020-01-27 */
+      !function(e,n){"object"==typeof exports&&"undefined"!=typeof module?module.exports=n():"function"==typeof define&&define.amd?define(n):e.colorjoe=n()}(this,function(){"use strict";"undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self&&self;function e(e,n){return e(n={exports:{}},n.exports),n.exports}var p=e(function(e,n){e.exports=function(){function r(e,n){e?(t(e,n,"touchstart","touchmove","touchend"),t(e,n,"mousedown","mousemove","mouseup")):console.warn("drag is missing elem!")}return r.xyslider=function(e){var n=i(e.class||"",e.parent),t=i("pointer",n);return i("shape shape1",t),i("shape shape2",t),i("bg bg1",n),i("bg bg2",n),r(n,a(e.cbs,t)),{background:n,pointer:t}},r.slider=function(e){var n=i(e.class,e.parent),t=i("pointer",n);return i("shape",t),i("bg",n),r(n,a(e.cbs,t)),{background:n,pointer:t}},r;function a(e,t){var n={};for(var r in e)n[r]=a(e[r]);function a(n){return function(e){e.pointer=t,n(e)}}return n}function i(e,n){return t="div",r=e,a=n,i=document.createElement(t),r&&(i.className=r),a.appendChild(i),i;var t,r,a,i}function t(r,e,n,a,i){var t,o,u,s=(e=(t=e)?{begin:t.begin||p,change:t.change||p,end:t.end||p}:{begin:function(e){o={x:e.elem.offsetLeft,y:e.elem.offsetTop},u=e.cursor},change:function(e){d(e.elem,"left",o.x+e.cursor.x-u.x+"px"),d(e.elem,"top",o.y+e.cursor.y-u.y+"px")},end:p}).begin,l=e.change,f=e.end;c(r,n,function(n){var t=function(e){var n=Array.prototype.slice,t=n.apply(arguments,[1]);return function(){return e.apply(null,t.concat(n.apply(arguments)))}}(g,l,r);c(document,a,t),c(document,i,function e(){h(document,a,t),h(document,i,e),g(f,r,n)}),g(s,r,n)})}function c(e,n,t){var r=!1;try{var a=Object.defineProperty({},"passive",{get:function(){r=!0}});window.addEventListener("testPassive",null,a),window.removeEventListener("testPassive",null,a)}catch(e){}e.addEventListener(n,t,!!r&&{passive:!1})}function h(e,n,t){e.removeEventListener(n,t,!1)}function d(e,n,t){e.style[n]=t}function p(){}function g(e,n,t){t.preventDefault();var r,a,i,o={x:(r=n.getBoundingClientRect()).left,y:r.top},u=n.clientWidth,s=n.clientHeight,l={x:(i=t,(i.touches?i.touches[i.touches.length-1]:i).clientX),y:(a=t,(a.touches?a.touches[a.touches.length-1]:a).clientY)},f=(l.x-o.x)/u,c=(l.y-o.y)/s;e({x:isNaN(f)?0:f,y:isNaN(c)?0:c,cursor:l,elem:n,e:t})}}()}),a=e(function(e,n){e.exports=function(){function c(e){if(Array.isArray(e)){if("string"==typeof e[0]&&"function"==typeof c[e[0]])return new c[e[0]](e.slice(1,e.length));if(4===e.length)return new c.RGB(e[0]/255,e[1]/255,e[2]/255,e[3]/255)}else if("string"==typeof e){var n=e.toLowerCase();c.namedColors[n]&&(e="#"+c.namedColors[n]),"transparent"===n&&(e="rgba(0,0,0,0)");var t=e.match(p);if(t){var r=t[1].toUpperCase(),a=h(t[8])?t[8]:parseFloat(t[8]),i="H"===r[0],o=t[3]?100:i?360:255,u=t[5]||i?100:255,s=t[7]||i?100:255;if(h(c[r]))throw new Error("color."+r+" is not installed.");return new c[r](parseFloat(t[2])/o,parseFloat(t[4])/u,parseFloat(t[6])/s,a)}e.length<6&&(e=e.replace(/^#?([0-9a-f])([0-9a-f])([0-9a-f])$/i,"$1$1$2$2$3$3"));var l=e.match(/^#?([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])$/i);if(l)return new c.RGB(parseInt(l[1],16)/255,parseInt(l[2],16)/255,parseInt(l[3],16)/255);if(c.CMYK){var f=e.match(new RegExp("^cmyk\\("+d.source+","+d.source+","+d.source+","+d.source+"\\)$","i"));if(f)return new c.CMYK(parseFloat(f[1])/100,parseFloat(f[2])/100,parseFloat(f[3])/100,parseFloat(f[4])/100)}}else if("object"==typeof e&&e.isColor)return e;return!1}var u=[],h=function(e){return void 0===e},e=/\s*(\.\d+|\d+(?:\.\d+)?)(%)?\s*/,d=/\s*(\.\d+|100|\d?\d(?:\.\d+)?)%\s*/,p=new RegExp("^(rgb|hsl|hsv)a?\\("+e.source+","+e.source+","+e.source+"(?:,"+/\s*(\.\d+|\d+(?:\.\d+)?)\s*/.source+")?\\)$","i");c.namedColors={},c.installColorSpace=function(a,i,e){function n(e,r){var n={};for(var t in n[r.toLowerCase()]=function(){return this.rgb()[r.toLowerCase()]()},c[r].propertyNames.forEach(function(t){var e="black"===t?"k":t.charAt(0);n[t]=n[e]=function(e,n){return this[r.toLowerCase()]()[t](e,n)}}),n)n.hasOwnProperty(t)&&void 0===c[e].prototype[t]&&(c[e].prototype[t]=n[t])}(c[a]=function(e){var r=Array.isArray(e)?e:arguments;i.forEach(function(e,n){var t=r[n];if("alpha"===e)this._alpha=isNaN(t)||1<t?1:t<0?0:t;else{if(isNaN(t))throw new Error("["+a+"]: Invalid color: ("+i.join(",")+")");"hue"===e?this._hue=t<0?t-Math.floor(t):t%1:this["_"+e]=t<0?0:1<t?1:t}},this)}).propertyNames=i;var r=c[a].prototype;for(var t in["valueOf","hex","hexa","css","cssa"].forEach(function(e){r[e]=r[e]||("RGB"===a?r.hex:function(){return this.rgb()[e]()})}),r.isColor=!0,r.equals=function(e,n){h(n)&&(n=1e-10),e=e[a.toLowerCase()]();for(var t=0;t<i.length;t+=1)if(Math.abs(this["_"+i[t]]-e["_"+i[t]])>n)return!1;return!0},r.toJSON=function(){return[a].concat(i.map(function(e){return this["_"+e]},this))},e)if(e.hasOwnProperty(t)){var o=t.match(/^from(.*)$/);o?c[o[1].toUpperCase()].prototype[a.toLowerCase()]=e[t]:r[t]=e[t]}return r[a.toLowerCase()]=function(){return this},r.toString=function(){return"["+a+" "+i.map(function(e){return this["_"+e]},this).join(", ")+"]"},i.forEach(function(t){var e="black"===t?"k":t.charAt(0);r[t]=r[e]=function(n,e){return void 0===n?this["_"+t]:e?new this.constructor(i.map(function(e){return this["_"+e]+(t===e?n:0)},this)):new this.constructor(i.map(function(e){return t===e?n:this["_"+e]},this))}}),u.forEach(function(e){n(a,e),n(e,a)}),u.push(a),c},c.pluginList=[],c.use=function(e){return-1===c.pluginList.indexOf(e)&&(this.pluginList.push(e),e(c)),c},c.installMethod=function(n,t){return u.forEach(function(e){c[e].prototype[n]=t}),this},c.installColorSpace("RGB",["red","green","blue","alpha"],{hex:function(){var e=(65536*Math.round(255*this._red)+256*Math.round(255*this._green)+Math.round(255*this._blue)).toString(16);return"#"+"00000".substr(0,6-e.length)+e},hexa:function(){var e=Math.round(255*this._alpha).toString(16);return"#"+"00".substr(0,2-e.length)+e+this.hex().substr(1,6)},css:function(){return"rgb("+Math.round(255*this._red)+","+Math.round(255*this._green)+","+Math.round(255*this._blue)+")"},cssa:function(){return"rgba("+Math.round(255*this._red)+","+Math.round(255*this._green)+","+Math.round(255*this._blue)+","+this._alpha+")"}});var n=function(a){a.installColorSpace("XYZ",["x","y","z","alpha"],{fromRgb:function(){var e=function(e){return.04045<e?Math.pow((e+.055)/1.055,2.4):e/12.92},n=e(this._red),t=e(this._green),r=e(this._blue);return new a.XYZ(.4124564*n+.3575761*t+.1804375*r,.2126729*n+.7151522*t+.072175*r,.0193339*n+.119192*t+.9503041*r,this._alpha)},rgb:function(){var e=this._x,n=this._y,t=this._z,r=function(e){return.0031308<e?1.055*Math.pow(e,1/2.4)-.055:12.92*e};return new a.RGB(r(3.2404542*e+-1.5371385*n+-.4985314*t),r(-.969266*e+1.8760108*n+.041556*t),r(.0556434*e+-.2040259*n+1.0572252*t),this._alpha)},lab:function(){var e=function(e){return.008856<e?Math.pow(e,1/3):7.787037*e+4/29},n=e(this._x/95.047),t=e(this._y/100),r=e(this._z/108.883);return new a.LAB(116*t-16,500*(n-t),200*(t-r),this._alpha)}})},t=function(c){c.installColorSpace("HSV",["hue","saturation","value","alpha"],{rgb:function(){var e,n,t,r=this._hue,a=this._saturation,i=this._value,o=Math.min(5,Math.floor(6*r)),u=6*r-o,s=i*(1-a),l=i*(1-u*a),f=i*(1-(1-u)*a);switch(o){case 0:e=i,n=f,t=s;break;case 1:e=l,n=i,t=s;break;case 2:e=s,n=i,t=f;break;case 3:e=s,n=l,t=i;break;case 4:e=f,n=s,t=i;break;case 5:e=i,n=s,t=l}return new c.RGB(e,n,t,this._alpha)},hsl:function(){var e,n=(2-this._saturation)*this._value,t=this._saturation*this._value,r=n<=1?n:2-n;return e=r<1e-9?0:t/r,new c.HSL(this._hue,e,n/2,this._alpha)},fromRgb:function(){var e,n=this._red,t=this._green,r=this._blue,a=Math.max(n,t,r),i=Math.min(n,t,r),o=a-i,u=0===a?0:o/a,s=a;if(0===o)e=0;else switch(a){case n:e=(t-r)/o/6+(t<r?1:0);break;case t:e=(r-n)/o/6+1/3;break;case r:e=(n-t)/o/6+2/3}return new c.HSV(e,u,s,this._alpha)}})},r=function(r){r.use(t),r.installColorSpace("HSL",["hue","saturation","lightness","alpha"],{hsv:function(){var e,n=2*this._lightness,t=this._saturation*(n<=1?n:2-n);return e=n+t<1e-9?0:2*t/(n+t),new r.HSV(this._hue,e,(n+t)/2,this._alpha)},rgb:function(){return this.hsv().rgb()},fromRgb:function(){return this.hsv().hsl()}})};return c.use(n).use(function(a){a.use(n),a.installColorSpace("LAB",["l","a","b","alpha"],{fromRgb:function(){return this.xyz().lab()},rgb:function(){return this.xyz().rgb()},xyz:function(){var e=function(e){var n=Math.pow(e,3);return.008856<n?n:(e-16/116)/7.87},n=(this._l+16)/116,t=this._a/500+n,r=n-this._b/200;return new a.XYZ(95.047*e(t),100*e(n),108.883*e(r),this._alpha)}})}).use(t).use(r).use(function(u){u.installColorSpace("CMYK",["cyan","magenta","yellow","black","alpha"],{rgb:function(){return new u.RGB(1-this._cyan*(1-this._black)-this._black,1-this._magenta*(1-this._black)-this._black,1-this._yellow*(1-this._black)-this._black,this._alpha)},fromRgb:function(){var e=this._red,n=this._green,t=this._blue,r=1-e,a=1-n,i=1-t,o=1;return e||n||t?(o=Math.min(r,Math.min(a,i)),r=(r-o)/(1-o),a=(a-o)/(1-o),i=(i-o)/(1-o)):o=1,new u.CMYK(r,a,i,o,this._alpha)}})}).use(function(e){e.namedColors={aliceblue:"f0f8ff",antiquewhite:"faebd7",aqua:"0ff",aquamarine:"7fffd4",azure:"f0ffff",beige:"f5f5dc",bisque:"ffe4c4",black:"000",blanchedalmond:"ffebcd",blue:"00f",blueviolet:"8a2be2",brown:"a52a2a",burlywood:"deb887",cadetblue:"5f9ea0",chartreuse:"7fff00",chocolate:"d2691e",coral:"ff7f50",cornflowerblue:"6495ed",cornsilk:"fff8dc",crimson:"dc143c",cyan:"0ff",darkblue:"00008b",darkcyan:"008b8b",darkgoldenrod:"b8860b",darkgray:"a9a9a9",darkgrey:"a9a9a9",darkgreen:"006400",darkkhaki:"bdb76b",darkmagenta:"8b008b",darkolivegreen:"556b2f",darkorange:"ff8c00",darkorchid:"9932cc",darkred:"8b0000",darksalmon:"e9967a",darkseagreen:"8fbc8f",darkslateblue:"483d8b",darkslategray:"2f4f4f",darkslategrey:"2f4f4f",darkturquoise:"00ced1",darkviolet:"9400d3",deeppink:"ff1493",deepskyblue:"00bfff",dimgray:"696969",dimgrey:"696969",dodgerblue:"1e90ff",firebrick:"b22222",floralwhite:"fffaf0",forestgreen:"228b22",fuchsia:"f0f",gainsboro:"dcdcdc",ghostwhite:"f8f8ff",gold:"ffd700",goldenrod:"daa520",gray:"808080",grey:"808080",green:"008000",greenyellow:"adff2f",honeydew:"f0fff0",hotpink:"ff69b4",indianred:"cd5c5c",indigo:"4b0082",ivory:"fffff0",khaki:"f0e68c",lavender:"e6e6fa",lavenderblush:"fff0f5",lawngreen:"7cfc00",lemonchiffon:"fffacd",lightblue:"add8e6",lightcoral:"f08080",lightcyan:"e0ffff",lightgoldenrodyellow:"fafad2",lightgray:"d3d3d3",lightgrey:"d3d3d3",lightgreen:"90ee90",lightpink:"ffb6c1",lightsalmon:"ffa07a",lightseagreen:"20b2aa",lightskyblue:"87cefa",lightslategray:"789",lightslategrey:"789",lightsteelblue:"b0c4de",lightyellow:"ffffe0",lime:"0f0",limegreen:"32cd32",linen:"faf0e6",magenta:"f0f",maroon:"800000",mediumaquamarine:"66cdaa",mediumblue:"0000cd",mediumorchid:"ba55d3",mediumpurple:"9370d8",mediumseagreen:"3cb371",mediumslateblue:"7b68ee",mediumspringgreen:"00fa9a",mediumturquoise:"48d1cc",mediumvioletred:"c71585",midnightblue:"191970",mintcream:"f5fffa",mistyrose:"ffe4e1",moccasin:"ffe4b5",navajowhite:"ffdead",navy:"000080",oldlace:"fdf5e6",olive:"808000",olivedrab:"6b8e23",orange:"ffa500",orangered:"ff4500",orchid:"da70d6",palegoldenrod:"eee8aa",palegreen:"98fb98",paleturquoise:"afeeee",palevioletred:"d87093",papayawhip:"ffefd5",peachpuff:"ffdab9",peru:"cd853f",pink:"ffc0cb",plum:"dda0dd",powderblue:"b0e0e6",purple:"800080",rebeccapurple:"639",red:"f00",rosybrown:"bc8f8f",royalblue:"4169e1",saddlebrown:"8b4513",salmon:"fa8072",sandybrown:"f4a460",seagreen:"2e8b57",seashell:"fff5ee",sienna:"a0522d",silver:"c0c0c0",skyblue:"87ceeb",slateblue:"6a5acd",slategray:"708090",slategrey:"708090",snow:"fffafa",springgreen:"00ff7f",steelblue:"4682b4",tan:"d2b48c",teal:"008080",thistle:"d8bfd8",tomato:"ff6347",turquoise:"40e0d0",violet:"ee82ee",wheat:"f5deb3",white:"fff",whitesmoke:"f5f5f5",yellow:"ff0",yellowgreen:"9acd32"}}).use(function(e){e.installMethod("clearer",function(e){return this.alpha(isNaN(e)?-.1:-e,!0)})}).use(function(e){e.use(r),e.installMethod("darken",function(e){return this.lightness(isNaN(e)?-.1:-e,!0)})}).use(function(e){e.use(r),e.installMethod("desaturate",function(e){return this.saturation(isNaN(e)?-.1:-e,!0)})}).use(function(t){function e(){var e=this.rgb(),n=.3*e._red+.59*e._green+.11*e._blue;return new t.RGB(n,n,n,e._alpha)}t.installMethod("greyscale",e).installMethod("grayscale",e)}).use(function(e){e.use(r),e.installMethod("lighten",function(e){return this.lightness(isNaN(e)?.1:e,!0)})}).use(function(u){u.installMethod("mix",function(e,n){e=u(e).rgb();var t=2*(n=1-(isNaN(n)?.5:n))-1,r=this._alpha-e._alpha,a=((t*r==-1?t:(t+r)/(1+t*r))+1)/2,i=1-a,o=this.rgb();return new u.RGB(o._red*a+e._red*i,o._green*a+e._green*i,o._blue*a+e._blue*i,o._alpha*n+e._alpha*(1-n))})}).use(function(n){n.installMethod("negate",function(){var e=this.rgb();return new n.RGB(1-e._red,1-e._green,1-e._blue,this._alpha)})}).use(function(e){e.installMethod("opaquer",function(e){return this.alpha(isNaN(e)?.1:e,!0)})}).use(function(e){e.use(r),e.installMethod("rotate",function(e){return this.hue((e||0)/360,!0)})}).use(function(e){e.use(r),e.installMethod("saturate",function(e){return this.saturation(isNaN(e)?.1:e,!0)})}).use(function(e){e.installMethod("toAlpha",function(e){var n=this.rgb(),t=e(e).rgb(),r=new e.RGB(0,0,0,n._alpha),a=["_red","_green","_blue"];return a.forEach(function(e){n[e]<1e-10?r[e]=n[e]:n[e]>t[e]?r[e]=(n[e]-t[e])/(1-t[e]):n[e]>t[e]?r[e]=(t[e]-n[e])/t[e]:r[e]=0}),r._red>r._green?r._red>r._blue?n._alpha=r._red:n._alpha=r._blue:r._green>r._blue?n._alpha=r._green:n._alpha=r._blue,n._alpha<1e-10||(a.forEach(function(e){n[e]=(n[e]-t[e])/n._alpha+t[e]}),n._alpha*=r._alpha),n})})}()}),g=n(b,"div");function b(e,n,t){var r=document.createElement(e);return r.className=n,t.appendChild(r),r}function n(e){var n=Array.prototype.slice,t=n.apply(arguments,[1]);return function(){return e.apply(null,t.concat(n.apply(arguments)))}}function t(e,n,t){return Math.min(Math.max(e,n),t)}var v={clamp:t,e:b,div:g,partial:n,labelInput:function(e,n,t,r){var a="colorPickerInput"+Math.floor(1001*Math.random()),i=g(e,t);return{label:(c=n,h=i,d=a,p=b("label","",h),p.innerHTML=c,d&&p.setAttribute("for",d),p),input:(o="text",u=i,s=r,l=a,f=b("input","",u),f.type=o,s&&(f.maxLength=s),l&&f.setAttribute("id",l),s&&(f.maxLength=s),f)};var o,u,s,l,f;var c,h,d,p},X:function(e,n){e.style.left=t(100*n,0,100)+"%"},Y:function(e,n){e.style.top=t(100*n,0,100)+"%"},BG:function(e,n){e.style.background=n}};var r={currentColor:function(e){var n=v.div("currentColorContainer",e),t=v.div("currentColor",n);return{change:function(e){v.BG(t,e.cssa())}}},fields:function(e,t,n){var r=n.space,a=n.limit||255,i=0<=n.fix?n.fix:0,o=(""+a).length+i;o=i?o+1:o;var u=r.split(""),s="A"==r[r.length-1];if(r=s?r.slice(0,-1):r,["RGB","HSL","HSV","CMYK"].indexOf(r)<0)return console.warn("Invalid field names",r);var l=v.div("colorFields",e),f=u.map(function(e){e=e.toLowerCase();var n=v.labelInput("color "+e,e,l,o);return n.input.onblur=c,n.input.onkeydown=h,n.input.onkeyup=d,{name:e,e:n}});function c(){t.done()}function h(e){e.ctrlKey||e.altKey||!/^[a-zA-Z]$/.test(e.key)||e.preventDefault()}function d(){var n=[r];f.forEach(function(e){n.push(e.e.input.value/a)}),s||n.push(t.getAlpha()),t.set(n)}return{change:function(n){f.forEach(function(e){e.e.input.value=(n[e.name]()*a).toFixed(i)})}}},hex:function(e,r,n){var t=v.labelInput("hex",n.label||"",e,7);return t.input.value="#",t.input.onkeyup=function(e){var n=e.keyCode||e.which,t=e.target.value;t=function(e,n,t){for(var r=e,a=e.length;a<n;a++)r+=t;return r}(t="#"==t[0]?t:"#"+t,7,"0"),13==n&&r.set(t)},t.input.onblur=function(e){r.set(e.target.value),r.done()},{change:function(e){t.input.value="#"==t.input.value[0]?"#":"",t.input.value+=e.hex().slice(1)}}},alpha:function(e,t){var n=p.slider({parent:e,class:"oned alpha",cbs:{begin:r,change:r,end:function(){t.done()}}});function r(e){var n=v.clamp(e.y,0,1);v.Y(e.pointer,n),t.setAlpha(1-n)}return{change:function(e){v.Y(n.pointer,1-e.alpha())}}},close:function(e,n,t){var r=v.e("a",t.class||"close",e);r.href="#",r.innerHTML=t.label||"Close",r.onclick=function(e){e.preventDefault(),n.hide()}}},y=function(r){return e=s,(n=[r.init,r.xy,r.z]).map(e).filter(l).length!=n.length?console.warn("colorjoe: missing cb"):function(e,n,t){return function(e){if(!e.e)return console.warn("colorjoe: missing element");var n=(t=e.e,"string"==typeof t?document.getElementById(e.e):e.e);var t;n.className="colorPicker";var r=e.cbs,a=p.xyslider({parent:n,class:"twod",cbs:{begin:i,change:i,end:h}});function i(e){l=r.xy(l,{x:v.clamp(e.x,0,1),y:v.clamp(e.y,0,1)},a,o),c()}var o=p.slider({parent:n,class:"oned",cbs:{begin:u,change:u,end:h}});function u(e){l=r.z(l,v.clamp(e.y,0,1),a,o),c()}var s=m(e.color),l=r.init(s,a,o),f={change:[],done:[]};function c(e){e=_(e)?e:[];for(var n,t=f.change,r=0,a=t.length;r<a;r++)n=t[r],-1==e.indexOf(n.name)&&n.fn(l)}function h(){if(!s.equals(l)){for(var e=0,n=f.done.length;e<n;e++)f.done[e].fn(l);s=l}}var d={e:n,done:function(){return h(),this},update:function(e){return c(e),this},hide:function(){return n.style.display="none",this},show:function(){return n.style.display="",this},get:function(){return l},set:function(e){var n=this.get();return l=r.init(m(e),a,o),n.equals(l)||this.update(),this},getAlpha:function(){return l.alpha()},setAlpha:function(e){return l=l.alpha(e),this.update(),this},on:function(e,n,t){return"change"==e||"done"==e?f[e].push({name:t,fn:n}):console.warn('Passed invalid evt name "'+e+'" to colorjoe.on'),this},removeAllListeners:function(e){if(e)f[e]=[];else for(var n in f)f[n]=[];return this}};return function(e,u,n){if(n){var s,l,f,c=v.div("extras",e);n.forEach(function(e,n){_(e)?(l=e[0],f=1<e.length?e[1]:{}):(l=e,f={});var t,r,a,i=l in y.extras?y.extras[l]:null;if(i)for(var o in s=i(c,(r=l+n,(a=function(e){var n={};for(var t in e)n[t]=e[t];return n}(t=u)).update=function(){t.update([r])},a),f))u.on(o,s[o],l)})}}(n,d,e.extras),c(),d}({e:e,color:n,cbs:r,extras:t})};var e,n};for(var i in y.rgb=y({init:function(e,n,t){var r=a(e).hsv();return this.xy(r,{x:r.saturation(),y:1-r.value()},n,t),this.z(r,r.hue(),n,t),r},xy:function(e,n,t){return v.X(t.pointer,n.x),v.Y(t.pointer,n.y),e.saturation(n.x).value(1-n.y)},z:function(e,n,t,r){return v.Y(r.pointer,n),o(t.background,n),e.hue(n)}}),y.hsl=y({init:function(e,n,t){var r=a(e).hsl();return this.xy(r,{x:r.hue(),y:1-r.saturation()},n,t),this.z(r,1-r.lightness(),n,t),r},xy:function(e,n,t,r){return v.X(t.pointer,n.x),v.Y(t.pointer,n.y),o(r.background,n.x),e.hue(n.x).saturation(1-n.y)},z:function(e,n,t,r){return v.Y(r.pointer,n),e.lightness(1-n)}}),y.extras={},y.registerExtra=function(e,n){e in y.extras&&console.warn('Extra "'+e+'"has been registered already!'),y.extras[e]=n},r)y.registerExtra(i,r[i]);function o(e,n){v.BG(e,new a.HSV(n,1,1).cssa())}function m(e){if(!u(e))return a("#000");if(e.isColor)return e;var n=a(e);return n||(u(e)&&console.warn("Passed invalid color to colorjoe, using black instead"),a("#000"))}function _(e){return"[object Array]"===Object.prototype.toString.call(e)}function u(e){return void 0!==e}function s(e){return"function"==typeof e}function l(e){return e}return y});
+    </script>
+    <script defer>
+      let fixScale = function(doc) {
+
+      var addEvent = 'addEventListener',
+        type = 'gesturestart',
+        qsa = 'querySelectorAll',
+        scales = [1, 1],
+        meta = qsa in doc ? doc[qsa]('meta[name=viewport]') : [];
+
+        function fix() {
+            meta.content = 'width=device-width,minimum-scale=' + scales[0] + ',maximum-scale=' + scales[1];
+            doc.removeEventListener(type, fix, true);
+        }
+
+        if ((meta = meta[meta.length - 1]) && addEvent in doc) {
+            fix();
+            scales = [.25, 1.6];
+            doc[addEvent](type, fix, true);
+        }
+    };
+    </script>
+    <!-- <script src="/js/graph.js" defer></script> -->
+    
+    <!-- import the web page's stylesheets along with the themes -->
+    <!-- <link rel="stylesheet" href="https://use.typekit.net/qtk5kiq.css"> -->
+    
+    <style>
+    #rgbValue, #hslaValue {
+    float: right;
+}
+
+.container {
+    overflow: auto;
+}
+
+#showPicker {
+    float: left;
+}
+
+.colorPicker {
+    display: inline-block;
+    width: 100%;
+}
+
+.colorPicker .extras {
+    float: right;
+    margin: 0.5em;
+}
+
+.colorPicker .extras .currentColorContainer {
+    overflow: hidden;
+}
+
+.colorPicker .extras .currentColor {
+    float: right;
+    width: 65px;
+    height: 30px;
+    border: 1px solid #bbb;
+    -moz-border-radius: .3em;
+    border-radius: .3em;
+}
+
+.colorPicker .extras .colorFields {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.colorPicker .extras .color {
+    text-align: right;
+}
+
+.colorPicker .extras .colorFields input {
+    width: 40px;
+    margin-left: 0.5em;
+}
+
+.colorPicker .extras .hex {
+    float: right;
+}
+
+.colorPicker .extras .hex input {
+    width: 60px;
+}
+
+.colorPicker .twod {
+    float: left;
+    margin: 10px 10px 10px 20px;
+}
+
+/* main dimensions */
+.colorPicker .twod, .colorPicker .twod .bg {
+    width: 170px;
+    height: 170px;
+}
+.colorPicker .oned, .colorPicker .oned .bg {
+    height: 170px;
+}
+.colorPicker .oned, .colorPicker .oned .bg, .colorPicker .oned .pointer .shape {
+    width: 20px;
+}
+
+.colorPicker .twod .bg {
+    position: absolute;
+    border: 1px solid #bbb;
+}
+.colorPicker .twod .pointer {
+    position: relative;
+    z-index: 2;
+    width: 8px;
+}
+.colorPicker .twod .pointer .shape {
+    position: absolute;
+}
+.colorPicker .twod .pointer .shape1 {
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 7px;
+    height: 6px;
+    border: 1px solid black;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.colorPicker .twod .pointer .shape2 {
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 5px;
+    border: 1px solid white;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.colorPicker .oned {
+    float: left;
+    margin: 1vh 0;
+}
+
+.colorPicker .oned .bg {
+    border: 1px solid #bbb;
+}
+.colorPicker .oned .pointer {
+    position: relative;
+    z-index: 2;
+}
+.colorPicker .oned .pointer .shape {
+    position: absolute;
+    margin-left: -4px;
+    margin-top: -2px;
+    height: 0;
+    border-width: 3px 4px;
+    border-style: solid;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    width: 23px;
+}
+/* gradients, tweak as needed based on which browsers you want to support */
+.colorPicker .oned .bg {
+    background: -moz-linear-gradient(top,  #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 66%, #ff00ff 83%, #ff0000 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff0000), color-stop(17%,#ffff00), color-stop(33%,#00ff00), color-stop(50%,#00ffff), color-stop(66%,#0000ff), color-stop(83%,#ff00ff), color-stop(100%,#ff0000));
+    background: -webkit-linear-gradient(top,  #ff0000 0%,#ffff00 17%,#00ff00 33%,#00ffff 50%,#0000ff 66%,#ff00ff 83%,#ff0000 100%);
+    background: -o-linear-gradient(top,  #ff0000 0%,#ffff00 17%,#00ff00 33%,#00ffff 50%,#0000ff 66%,#ff00ff 83%,#ff0000 100%);
+    background: linear-gradient(to bottom,  #ff0000 0%,#ffff00 17%,#00ff00 33%,#00ffff 50%,#0000ff 66%,#ff00ff 83%,#ff0000 100%);
+}
+
+.colorPicker .twod .bg1 {
+    z-index: 0;
+    background: -moz-linear-gradient(left,  rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0)));
+    background: -webkit-linear-gradient(left,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+    background: -o-linear-gradient(left,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+    background: linear-gradient(to right,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+}
+.colorPicker .twod .bg2 {
+    z-index: 1;
+    background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,1)));
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
+    background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
+    background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
+}
+
+#hslPicker .twod .bg1 {
+    background: -moz-linear-gradient(left,  #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 66%, #ff00ff 83%, #ff0000 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ff0000), color-stop(17%,#ffff00), color-stop(33%,#00ff00), color-stop(50%,#00ffff), color-stop(66%,#0000ff), color-stop(83%,#ff00ff), color-stop(100%,#ff0000));
+    background: -webkit-linear-gradient(left, #ff0000 0%,#ffff00 17%,#00ff00 33%,#00ffff 50%,#0000ff 66%,#ff00ff 83%,#ff0000 100%);
+    background: -o-linear-gradient(left, #ff0000 0%,#ffff00 17%,#00ff00 33%,#00ffff 50%,#0000ff 66%,#ff00ff 83%,#ff0000 100%);
+    background: linear-gradient(to right, #ff0000 0%,#ffff00 17%,#00ff00 33%,#00ffff 50%,#0000ff 66%,#ff00ff 83%,#ff0000 100%);
+}
+
+#hslPicker .twod .bg2 {
+    background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(127,127,127,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(127,127,127,1)));
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(127,127,127,1) 100%);
+    background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(127,127,127,1) 100%);
+    background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(127,127,127,1) 100%);
+}
+
+#hslPicker .oned .bg {
+    z-index: 1;
+    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,1)));
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(0,0,0,0),rgba(0,0,0,1) 100%);
+    background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,1) 100%);
+    background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,1) 100%);
+}
+
+#hslPicker .extras {
+    width: 100px;
+}
+
+#hslPicker .oned.alpha {
+    margin: 0;
+}
+
+#hslPicker .oned.alpha .bg {
+    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(0,0,0,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(0,0,0,1) 100%); /* Opera 11.10+ */
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(0,0,0,1) 100%); /* W3C */
+}
+
+      
+      .header {
+  background: #000;
+  color: #fff;
+}
+
+body {
+  background-color: #333;
+  color: #fff;
+}
+
+input, select, button {
+  background-color: #333;
+  color: #fff;
+}
+
+#dashboard {
+  background-color: #333;
+}
+
+#dashboard > div {
+  border-color: #535353;
+}
+
+#dashboard .title {
+  background-color: #333;
+}
+
+.footer button {
+  border-color: #fff;
+  background-color: #333;
+  color: #fff;
+}
+
+.footer button:hover {
+  background-color: #fff;
+  color: #333;
+}
+
+.remix button {
+  border-color: #fff;
+  color: #fff;
+}
+
+.remix button:hover {
+  background-color: #fff;
+}
+
+#notSupported {
+  background-color: red;
+  color: white;
+}
+
+.timestamp {
+  color: #8ec641;
+}
+
+#log {
+  background-color: #000;
+  color: #cecece;
+}
+
+#dashboard .battery-level .battery {
+  border-color: #fff;
+}
+
+#dashboard .battery-level .battery:after {
+  background: #fff;
+}
+
+#dashboard .play-button .button span:hover {
+  border-left-color: #333;
+}
+
+.colorPicker .oned .pointer .shape {
+  border-left-color: #fff;
+  border-right-color: #fff;
+}
+      
+      .header {
+  background: #000;
+  color: #fff;
+}
+
+body {
+  background-color: #fff;
+  color: #000;
+}
+
+input, select, button {
+  background-color: #fff;
+  color: #000;
+}
+
+#dashboard {
+  background-color: #fff;
+}
+
+#dashboard > div {
+  border-color: #cecece;
+}
+
+#dashboard .title {
+  background-color: #fff;
+}
+
+#notSupported {
+  background-color: red;
+  color: white;
+}
+
+.footer button {
+  border-color: #63338f;
+  background-color: #fff;
+  color: #63338f;
+}
+
+.footer button:hover {
+  background-color: #63338f;
+  color: #fff;
+}
+
+.remix button {
+  border-color: #333;
+  color: #333;
+}
+
+.remix button:hover {
+  background-color: #333;
+}
+
+.timestamp {
+  color: #8ec641;
+}
+
+#log {
+  background-color: #000;
+  color: #cecece;
+}
+
+#dashboard .battery-level .battery {
+  border-color: #333;
+}
+
+#dashboard .battery-level .battery:after {
+  background: #333;
+}
+
+#dashboard .play-button .button span:hover {
+  border-left-color: #63338f;
+}
+.colorPicker .oned .pointer .shape {
+  border-left-color: #666;
+  border-right-color: #666;
+}
+      
+      /**
+ * Header
+ */
+
+.header {
+  box-sizing: border-box;
+  font-size: 16px;
+  min-height: 60px;
+  line-height: 30px;
+  padding: 15px 20px 0px 20px; /* TRouBLe */
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  margin: 0;
+  border-bottom: 5px solid #00a7e9;
+}
+
+.header h1 {
+  flex: 1;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.header button {
+  border: solid 2px #fff;
+  background-color: #000;
+  color: #fff;
+  margin-left: 20px;
+  height: 30px;
+}
+
+.header button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+button {
+  height: 25px;
+  font-size: 16px;
+  border-radius: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-width: 2px;
+}
+
+body {
+  font-family: proxima-nova, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+input, select, button, label {
+  font-weight: 600;
+  outline: none;
+}
+
+div.left {
+  float: left;
+  display: flex;
+  align-items: center;
+}
+
+div.right {
+  float: right;
+  display: flex;
+  align-items: center;
+}
+
+div.clear {
+  clear: both;
+}
+
+.main {
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-top: 80px;
+}
+
+.commands button {
+  font-size: 14px;
+  margin: 10px 10px;
+  height: 70px;
+  width: 150px;
+}
+
+.hidden {
+  display: none;
+}
+
+.notSupported {
+  padding: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.subheader {
+  height: 100px;
+  line-height: 100px;
+  padding-left: 70px;
+  padding-right: 70px;
+}
+
+.subheader .title {
+  font-size: 36px;
+  font-weight: 500;
+}
+
+#dashboard {
+  position: block;
+  height: calc(60vh - 190px);
+  margin: 0 0;
+  //overflow-y: auto;
+  padding: 30px 0px 0px 0px;
+}
+
+#dashboard > div {
+  width: 120px;
+  height: 100px;
+  margin: 0px 10px 12px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  float: left;
+}
+
+#dashboard .title {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  height: 20px;
+  padding: 10px;
+  text-overflow: ellipsis;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  white-space: nowrap;
+  //overflow: hidden;
+}
+
+#dashboard .content {
+  height: 100px;
+  width: 120px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#dashboard .image {
+  width: calc(100vw - 50px);
+  height: calc(75vw - 50px);
+}
+
+#dashboard .image .content {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+#dashboard .image img {
+  width: 90%;
+}
+
+/* Text Panel */
+#dashboard .text .content {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60%;
+}
+
+#dashboard .text .content p {
+  padding: 10px;
+  text-align: center;
+}
+
+#dashboard .graph .content,
+#dashboard .color .content,
+#dashboard .model3d .content {
+  position: relative;
+}
+
+/* Graph Panel */
+#dashboard .graph .content .text {
+  height: 95px;
+}
+
+#dashboard .graph .content .chart {
+  height: 105px;
+}
+
+#dashboard .graph .text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+#dashboard .graph .text p {
+  padding: 10px;
+}
+
+#log {
+  height: calc(50vh - 150px);
+  width: 100%;
+  font-family: pt-mono, monospace;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  overflow-x: hidden; 
+  overflow-x: auto;
+  transition : color 0.1s linear;
+  padding: 0 0px;
+  border: 20px solid #000;
+}
+
+.footer {
+  height: 45px;
+  line-height: 45px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.footer button {
+  font-size: 14px;
+  margin: 10px 10px;
+}
+
+#templates {
+  display: none;
+}
+
+/* On/Off Switch Widget */
+.onoffswitch {
+  display: inline-block;
+  position: relative;
+  width: 50px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  margin-left: 10px;
+}
+
+.onoffswitch-checkbox {
+  display: none;
+}
+
+.onoffswitch-label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid #900;
+  border-radius: 15px;
+  transition: border 0.3s ease-in 0s;
+}
+
+.onoffswitch-inner {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  transition: margin 0.3s ease-in 0s;
+}
+
+.onoffswitch-inner:before,
+.onoffswitch-inner:after {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 25px;
+  padding: 0;
+  line-height: 25px;
+  font-size: 14px;
+  color: white;
+  font-family: proxima-nova, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+
+.onoffswitch-inner:before {
+  content: "on";
+  padding-left: 6px;
+  background-color: #8ec641;
+  color: #fff;
+}
+
+.onoffswitch-inner:after {
+  content: "off";
+  padding-right: 6px;
+  background-color: #c64141;
+  color: #fff;
+  text-align: right;
+}
+
+.onoffswitch-switch {
+  display: block;
+  width: 19px;
+  margin: 3px;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 23px;
+  border: 1px solid #900;
+  border-radius: 15px;
+  transition: all 0.3s ease-in 0s; 
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+  border-color: #71ae1e; 
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+  margin-left: 0;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+  right: 0px; 
+  border-color: #67ac38;
+}
+
+.footer .onoffswitch {
+  margin-right: 20px;
+}
+
+
+/* Battery Level Panel */
+#dashboard .battery-level .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60%;
+}
+
+#dashboard .battery-level .battery {
+  border-width: 2px;
+  border-style: solid;
+  width: 50px;
+  height: 10px;
+  padding: 2px;
+  border-radius: 2px;
+  position: relative;
+}
+
+
+#dashboard .battery-level .battery:hover {cursor:pointer;}
+
+#dashboard .battery-level .level {
+  display: block;
+  background: #8ec641;  
+  height: 100%;
+}
+
+#dashboard .battery-level .battery-alert .level {
+  background: #c64141;
+}
+
+#dashboard .battery-level .battery-middle .level {
+  background: #f89521;
+}
+
+#dashboard .battery-level .percentage {
+  margin-top: 10px;
+}
+
+/* Switch Panel */
+#dashboard .onboard-switch .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#dashboard .onboard-switch .onoffswitch {
+  width: 150px;
+  margin-left: 0;
+}
+
+#dashboard .onboard-switch .onoffswitch-label {
+  border-radius: 38px;
+}
+
+#dashboard .onboard-switch .onoffswitch-inner:before,
+#dashboard .onboard-switch .onoffswitch-inner:after {
+  height: 75px;
+  line-height: 75px;
+  font-size: 24px;
+}
+
+#dashboard .onboard-switch .onoffswitch-inner:before {
+  padding-left: 28px;
+}
+
+#dashboard .onboard-switch .onoffswitch-inner:after {
+  padding-right: 28px;
+}
+
+#dashboard .onboard-switch .onoffswitch-switch {
+  width: 63px;
+  margin: 6px;
+  right: 72px;
+  border-radius: 32px;
+}
+
+#dashboard .onboard-switch .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+  right: 0px; 
+}
+
+/* Buttons Panel */
+#dashboard .onboard-buttons .content {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#dashboard .onboard-buttons .buttonpanel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #b0b0b0;
+  border: 1px solid #878787;
+  border-radius: 4px;
+  width: 94px;
+  height: 86px;
+}
+
+/* Round Button Widget */
+#dashboard .onboard-buttons .roundbtn {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #333;
+  display: inline-block;
+  background-color: #000;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50x;
+  border-radius: 50px;
+  -moz-transition: all 35ms linear;
+  -o-transition: all 35ms linear;
+  -webkit-transition: all 35ms linear;
+  transition: all 35ms linear;
+  -ms-transition: all 35ms linear;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#dashboard .onboard-buttons .roundbtn .inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background-color: #454545;
+  margin-top: -8px;
+  border: 1px solid #676767;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -moz-transition: margin 35ms 35ms linear;
+  -o-transition: margin 35ms 35ms linear;
+  -webkit-transition: margin 35ms 35ms;
+  -webkit-transition-delay: linear, 0s;
+  transition: margin 35ms 35ms linear;
+  -ms-transition: margin 35ms 35ms linear;
+}
+
+#dashboard .onboard-buttons .roundbtn.pressed .inner {
+  margin-top: 0;
+  
+  -moz-transition: margin 35ms linear;
+  -o-transition: margin 35ms linear;
+  -webkit-transition: margin 35ms linear;
+  -webkit-transition-delay: 0s, linear;
+  transition: margin 35ms linear;
+  -ms-transition: margin 35ms linear;
+}
+
+#dashboard .onboard-buttons .text {
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.5) 0 0 5px;
+}
+    </style>
+    
+    <!-- import the webpage's javascript file -->
+    <script type="module" defer>
+      // let the editor know that `Chart` is defined by some code
+      // included in another file (in this case, `index.html`)
+      // Note: the code will still work without this line, but without it you
+      // will see an error in the editor
+      /* global Chart */
+      /* global Graph */
+      /* global numeral */
+      /* global colorjoe */
+
+      'use strict';
+
+      //import * as THREE from 'https://threejs.org/build/three.module.js';
+      //import {GLTFLoader} from 'https://threejs.org/examples/jsm/loaders/GLTFLoader.js';
+
+      let device;
+
+      const bufferSize = 64;
+      //const colors = ['#0000FF', '#FF0000', '#009900', '#FF9900', '#CC00CC', '#666666', '#00CCFF', '#000000'];
+      const colors = ['#00a7e9', '#f89521', '#be1e2d'];
+      const measurementPeriodId = '0001';
+
+      const maxLogLength = 500;
+      const log = document.getElementById('log');
+      const butConnect = document.getElementById('butConnect');
+      const butClear = document.getElementById('butClear');
+      const autoscroll = document.getElementById('autoscroll');
+      const showTimestamp = document.getElementById('showTimestamp');
+      const lightSS = document.getElementById('light');
+      const darkSS = document.getElementById('dark');
+      const darkMode = document.getElementById('darkmode');
+      const dashboard = document.getElementById('dashboard');
+      const fpsCounter = document.getElementById("fpsCounter");
+      const knownOnly = document.getElementById("knownonly");
+
+      let colorIndex = 0;
+      let activePanels = ["battery","status","uart_tx"];
+      let bytesReceived = 0;
+      let currentBoard;
+      let buttonState = 0;
+      //var loadingImg = false;
+      var bufRem = 0;
+      var imgBuf = "";
+      var bufLen = 0;
+
+      document.addEventListener('DOMContentLoaded', () => {
+        butConnect.addEventListener('click', clickConnect);
+        butClear.addEventListener('click', clickClear);
+        autoscroll.addEventListener('click', clickAutoscroll);
+        showTimestamp.addEventListener('click', clickTimestamp);
+        darkMode.addEventListener('click', clickDarkMode);
+        cmdGetConfig.addEventListener('click',clickGetConfig);
+        cmdSyncTime.addEventListener('click',clickSyncTime);
+        cmdGetGPS.addEventListener('click',clickGetGPS);
+        cmdTakeImage.addEventListener('click',clickTakePicture);
+        cmdPreview.addEventListener('click',clickPreview);
+        cmdReloadCfg.addEventListener('click',clickReloadCfg);
+
+        if ('bluetooth' in navigator) {
+          const notSupported = document.getElementById('notSupported');
+          notSupported.classList.add('hidden');
+        }
+
+        loadAllSettings();
+        updateTheme();
+        //createMockPanels();
+      });
+
+
+      const boards = {
+        CLUE: {
+          colorOrder: 'GRB',
+          neopixels: 1,
+          hasSwitch: false,
+          buttons: 2,
+        },
+        CPlay: {
+          colorOrder: 'GRB',
+          neopixels: 10,
+          hasSwitch: true,
+          buttons: 2,
+        },
+        Sense: {
+          colorOrder: 'GRB',
+          neopixels: 1,
+          hasSwitch: false,
+          buttons: 1,
+        },
+        PiCam: {
+          colorOrder: 'GRB',
+          neopixels: 1,
+          hasSwitch: false,
+          buttons: 1,
+        },
+        unknown: {
+          colorOrder: 'GRB',
+          neopixels: 1,
+          hasSwitch: false,
+          buttons: 1,
+        }
+      }
+
+      let panels = {
+        uart_tx: {
+          title: 'UART TX',
+          serviceId: '6e400001-b5a3-f393-e0a9-e50e24dcca9e',
+          characteristicId: '6e400002-b5a3-f393-e0a9-e50e24dcca9e',
+          //6E400001-B5A3-F393-E0A9-E50E24DCCA9E
+          panelType: "custom",
+          structure: ['String'],
+          data: [],
+          properties: ['write'],
+          textFormat: function(value) {
+            let c = String.fromCharCode(value);
+            return c;
+          },
+          create: function(panelId) {
+            //createTextPanel(panelId);
+          },
+          update: function(panelId) {
+
+          }
+        },
+        status: {
+          title: 'Status',
+          serviceId: '6e400001-b5a3-f393-e0a9-e50e24dcca9e',
+          characteristicId: '6e400003-b5a3-f393-e0a9-e50e24dcca9e',
+          //6E400001-B5A3-F393-E0A9-E50E24DCCA9E
+          panelType: "custom",
+          structure: ['String'],
+          data: [],
+          properties: ['notify'],
+          textFormat: function(value) {
+            let c = String.fromCharCode(value);
+            return c;
+          },
+          create: function(panelId) {
+            //createTextPanel(panelId);
+          },
+          update: function(panelId) {
+            //if ((panels[panelId].data[0] == 0x00) || panels[panelId].data.length > 64) {
+            let value = "";
+            var c ='';
+            //let data_tmp = panels[panelId].data; //store binary in case it's an image
+            Object.entries(panels[panelId].data).forEach((x, index) => {
+              if (panels[panelId].data.length > 0) {
+                c = String.fromCharCode(panels[panelId].data.shift());
+                //if (c==String.fromCharCode(10)) value += "<BR>";
+                //else 
+                value += c;
+              }
+            });
+
+            //Get image count
+            if (value.search("imgs: ") >= 0) 
+              document.querySelector("#dashboard .image_count .content #imgs").innerHTML = value.substr(value.lastIndexOf("imgs: ")+6,4);
+
+            if (value.search("runs: ") >= 0) {
+              var start = value.lastIndexOf("runs: ")+6;
+              document.querySelector("#dashboard .image_count .content #runs").textContent = value.substr(start,(value.indexOf(",",start))-start);
+            }
+
+            if (value.search("dfs: ") >=0)
+              document.querySelector("#dashboard .disk_space .content p").innerHTML = value.substr(value.lastIndexOf("dfs: ")+5,value.lastIndexOf("GB")-(value.lastIndexOf("dfs: ")+5))+"<br>GB";
+
+            if (value.search("loc: ") >= 0) 
+              document.querySelector("#dashboard .location .content p").innerHTML = value.substr(value.lastIndexOf("loc: ")+5,21).replace(" ","<br>");
+
+            //Get image preview
+            if (value.search("img_blob:") >= 0) {
+              imgBuf = value.substr(value.search("img_blob:")+16);
+              bufLen = parseInt(value.substr(value.search("img_blob:")+9,6) - 1);
+              bufRem = bufLen - imgBuf.length;
+              //let blob = new Blob(value.substr(value.search("img_blob:")+16));
+              //let img = new Image()
+              //img.src = URL.createObjectURL(blob)
+            }
+            else if (bufRem > 0) {
+              imgBuf += value.substr(0,bufRem);
+              if (value.length >= bufRem) {
+                bufRem = 0;
+                logMsg("Transferring: 100%", true, true);
+                document.querySelector("#dashboard .image").hidden = true;
+                document.querySelector("#dashboard .image .content img").src = imgBuf;
+                document.querySelector("#dashboard .image").style.display = 'none';
+                document.querySelector("#dashboard .image").style.display = 'block';
+                document.querySelector("#dashboard .image").hidden = false;
+              }
+              else {
+                //bufRem -= value.length;
+                bufRem = bufLen - imgBuf.length;
+                logMsg("Transferring: " + parseFloat((100-((bufRem/bufLen)*100)).toPrecision(3)) + "%", false, true);
+              }
+            }
+            else logMsg(value.replaceAll(String.fromCharCode(10),"<br>"), false);
+            //}
+            //updateTextPanel(panelId);
+          }
+        },
+        battery: {
+          title: 'Battery Level',
+          serviceId: 'battery_service',
+          characteristicId: 'battery_level',
+          panelType: "custom",
+          structure: ['Uint8'],
+          data: {battery:[]},
+          properties: ['notify'],
+          textFormat: function(value) {
+            return numeral(value).format('0.0') + '%';
+          },
+          create: function(panelId) {
+            let panelTemplate = loadPanelTemplate(panelId, 'battery-level');
+            this.update(panelId);
+          },
+          update: function(panelId) {
+            let panelElement = document.querySelector(".battery-level");
+            let value = null;
+            if (panels[panelId].data.battery.length > 0) {
+              value = panels[panelId].data.battery.pop();
+              panels[panelId].data.battery = [];
+            }
+
+            if (value != null && value <= 25) { // Show Red
+              panelElement.querySelector(".content .battery").classList.remove("battery-middle");
+              panelElement.querySelector(".content .battery").classList.add("battery-alert");
+            } else if (value == null || value <= 50) { // Show Yellow
+              panelElement.querySelector(".content .battery").classList.remove("battery-alert");
+              panelElement.querySelector(".content .battery").classList.add("battery-middle");
+            } else { // Show Green
+              panelElement.querySelector(".content .battery").classList.remove("battery-middle");
+              panelElement.querySelector(".content .battery").classList.remove("battery-alert");
+            }
+
+            if (value == null) {
+              panelElement.querySelector(".content .percentage").innerHTML = '?';      
+              panelElement.querySelector(".content .battery .level").style.width = '100%';
+              panelElement.querySelector(".content .battery").title = 'Battery Level: ?';
+            } else {
+              panelElement.querySelector(".content .battery .level").style.width = value + '%';
+              value = panels[panelId].textFormat(value);
+              panelElement.querySelector(".content .percentage").innerHTML = value;
+              panelElement.querySelector(".content .battery").title = 'Battery Level: ' + value;
+            }
+          },
+        },
+        temperature: {
+          serviceId: '0100',
+          characteristicId: '0101',
+          panelType: "graph",
+          structure: ['Float32'],
+          data: {temperature:[]},
+          properties: ['notify'],
+          textFormat: function(value) {
+            return numeral((9 / 5 * value) + 32).format('0.00') + '&deg; F'; 
+          },
+        },
+        light: {
+          serviceId: '0300',
+          characteristicId: '0301',
+          panelType: "graph",
+          structure: ['Float32'],
+          data: {light:[]},
+          properties: ['notify'],
+        },
+        accelerometer: {
+          serviceId: '0200',
+          characteristicId: '0201',
+          panelType: "graph",
+          structure: ['Float32', 'Float32', 'Float32'],
+          data: {x:[], y:[], z:[]},
+          properties: ['notify'],
+          textFormat: function(value) {
+            return numeral(value).format('0.00');
+          },
+          measurementPeriod: 500,
+        },
+        gyroscope: {
+          serviceId: '0400',
+          characteristicId: '0401',
+          panelType: "graph",
+          structure: ['Float32', 'Float32', 'Float32'],
+          data: {x:[], y:[], z:[]},
+          properties: ['notify'],
+          textFormat: function(value) {
+            return numeral(value).format('0.00');
+          },
+          measurementPeriod: 500,
+        },
+        magnetometer: {
+          serviceId: '0500',
+          characteristicId: '0501',
+          panelType: "graph",
+          structure: ['Float32', 'Float32', 'Float32'],
+          data: {x:[], y:[], z:[]},
+          properties: ['notify'],
+          textFormat: function(value) {
+            return numeral(value).format('0.00') + ' &micro;T';
+          },
+          measurementPeriod: 500,
+        },
+        buttons: {
+          serviceId: '0600',
+          characteristicId: '0601',
+          panelType: "custom",
+          structure: ['Uint32'],
+          data: {buttonState:[]},
+          properties: ['notify'],
+          create: function(panelId) {
+            let panelTemplate = loadPanelTemplate(panelId, 'onboard-buttons');
+            for (let i = 0; i < currentBoard.buttons; i++) {
+              let buttonTemplate = document.querySelector("#templates > .roundbutton").cloneNode(true);
+              buttonTemplate.id = "button_" + (i + 1);
+              buttonTemplate.querySelector(".text").innerHTML = String.fromCharCode(65 + i);
+              panelTemplate.querySelector(".content").appendChild(buttonTemplate);
+            }
+          },
+          update: function(panelId) {
+            let panelElement = document.querySelector("#dashboard > #" + panelId);
+            buttonState = panels[panelId].data.buttonState.pop();
+            if (panels.switch.condition()) {
+              panels.switch.update('switch'); // Update the switch because we aren't doing 2 notifys
+            }
+            // Match the buttons to the values
+            for (let i = 1; i <= currentBoard.buttons; i++) {
+              if (buttonState & (1 << i)) {
+                panelElement.querySelector("#button_" + i + " .roundbtn").classList.add("pressed");
+              } else {
+                panelElement.querySelector("#button_" + i + " .roundbtn").classList.remove("pressed");
+              }
+            }      
+          },
+        },
+        switch: {
+          serviceId: '0600',
+          characteristicId: '0601',
+          panelType: "custom",
+          structure: ['Uint32'],
+          data: {buttonState:[]},
+          properties: [],
+          condition: function() {
+            return currentBoard.hasSwitch;
+          },
+          create: function(panelId) {
+            let panelTemplate = loadPanelTemplate(panelId, 'onboard-switch');
+            this.update(panelId);
+          },
+          update: function(panelId) {
+            // UI Only Update
+            let panelElement = document.querySelector("#dashboard > #" + panelId);
+            panelElement.querySelector(".content #onboardSwitch").checked = buttonState & 1;
+          },
+        },
+        humidity: {
+          serviceId: '0700',
+          characteristicId: '0701',
+          panelType: "graph",
+          structure: ['Float32'],
+          data: {humidity:[]},
+          properties: ['notify'],
+          textFormat: function(value) {
+            return numeral(value).format('0.0') + '%';
+          },
+        },
+        barometric_pressure: {
+          serviceId: '0800',
+          characteristicId: '0801',
+          panelType: "graph",
+          structure: ['Float32'],
+          data: {barometric:[]},
+          properties: ['notify'],
+          textFormat: function(value) {
+            return numeral(value).format('0.00') + ' hPA';
+          },
+        },
+        neopixel: {
+          serviceId: '0900',
+          characteristicId: '0903',
+          panelType: "color",
+          structure: ['Uint16', 'Uint8', 'Uint8[]'],
+          data: {R:[],G:[],B:[]},
+          properties: ['write'],
+        },
+        'model3d': {
+          title: '3D Model',
+          serviceId: '0d00',
+          characteristicId: '0d01',
+          panelType: "model3d",
+          structure: ['Float32', 'Float32', 'Float32', 'Float32'],
+          data: {w:[],x:[], y:[], z:[]},
+          style: "font-size: 16px;",
+          properties: ['notify'],
+          textFormat: function(value) {
+            return numeral(value).format('0.00') + ' rad';
+          },
+          measurementPeriod: 200,
+        },
+      };
+
+      function encodePacket(panelId, values) { 
+        const typeMap = {
+          "Uint8":    {fn: DataView.prototype.setUint8,    bytes: 1},
+          "Uint16":   {fn: DataView.prototype.setUint16,   bytes: 2},
+          "Uint32":   {fn: DataView.prototype.setUint32,   bytes: 4},
+          "Int32":    {fn: DataView.prototype.setInt32,    bytes: 4},
+          "Float32":  {fn: DataView.prototype.setFloat32,  bytes: 4},
+        };
+
+        if (values.length != panels[panelId].packetSequence.length) {
+          logMsg("Error in encodePacket(): Number of arguments must match structure");
+          return false;
+        }
+
+        let bufferSize = 0, packetPointer = 0;
+        panels[panelId].packetSequence.forEach(function(dataType) {
+          bufferSize += typeMap[dataType].bytes;
+        });
+
+        let view = new DataView(new ArrayBuffer(bufferSize));
+
+        for (var i = 0; i < values.length; i++) {
+          let dataType = panels[panelId].packetSequence[i];
+          let dataViewFn = typeMap[dataType].fn.bind(view);
+          dataViewFn(packetPointer, values[i], true);
+          packetPointer += typeMap[dataType].bytes;
+        }  
+
+        return view.buffer;
+      }
+
+      /**
+       * @name connect
+       * Opens a Web Serial connection to a micro:bit and sets up the input and
+       * output stream.
+       */
+      async function connect() {  
+        // - Request a port and open a connection.
+        if (!device) {
+          logMsg('Connecting to device ...');
+          let services = [];
+          for (let panelId of Object.keys(panels)) {
+            services.push(getFullId(panels[panelId].serviceId));
+          }
+          device = await navigator.bluetooth.requestDevice({
+            filters: [ {namePrefix:'PiCam'} ],
+            optionalServices: services,
+          }); 
+        }
+        if (device) {
+          logMsg("Connected to device " + device.name);
+          if (boards.hasOwnProperty(device.name)) {
+            currentBoard = boards[device.name];    
+          } else {
+            currentBoard = boards.unknown;
+          }
+          device.addEventListener('gattserverdisconnected', onDisconnected);
+          let server = await device.gatt.connect();
+          const availableServices = await server.getPrimaryServices();
+
+      /*
+          // Create the panels only if service available
+          for (let panelId of Object.keys(panels)) {
+            if (panels[panelId].condition == undefined || panels[panelId].condition()) {        
+              if (getFullId(panels[panelId].serviceId).substr(0, 4) == "adaf") {
+                for (const service of availableServices) {
+                  if (getFullId(panels[panelId].serviceId) == service.uuid) {
+                    createPanel(panelId);
+                  }
+                }
+              } else {
+                // Non-custom ones such as battery are always active
+                createPanel(panelId);
+              }
+            }
+          }
+      */
+
+          reset();
+
+          for (let panelId of activePanels) {
+            let service = await server.getPrimaryService(getFullId(panels[panelId].serviceId)).catch(error => {console.log(error);});
+            if (service) {
+              panels[panelId].characteristic = await service.getCharacteristic(getFullId(panels[panelId].characteristicId)).catch(error => {console.log(error);});
+              logMsg('');
+              logMsg('Characteristic Information');
+              logMsg('---------------------------');
+              logMsg('> Sensor:               ' + ucWords(panelId));
+              logMsg('> Characteristic UUID:  ' + panels[panelId].characteristic.uuid);
+              logMsg('> Broadcast:            ' + panels[panelId].characteristic.properties.broadcast);
+              logMsg('> Read:                 ' + panels[panelId].characteristic.properties.read);
+              logMsg('> Write w/o response:   ' + panels[panelId].characteristic.properties.writeWithoutResponse);
+              logMsg('> Write:                ' + panels[panelId].characteristic.properties.write);
+              logMsg('> Notify:               ' + panels[panelId].characteristic.properties.notify);
+              logMsg('> Indicate:             ' + panels[panelId].characteristic.properties.indicate);
+              logMsg('> Signed Write:         ' + panels[panelId].characteristic.properties.authenticatedSignedWrites);
+              logMsg('> Queued Write:         ' + panels[panelId].characteristic.properties.reliableWrite);
+              logMsg('> Writable Auxiliaries: ' + panels[panelId].characteristic.properties.writableAuxiliaries);
+
+              if (panels[panelId].properties.includes("notify")) {
+                if (panels[panelId].measurementPeriod !== undefined) {
+                  let mpChar = await service.getCharacteristic(getFullId(measurementPeriodId)).catch(error => {console.log(error);});
+                  let view = new DataView(new ArrayBuffer(4));
+                  view.setInt32(0, panels[panelId].measurementPeriod, true);
+                  mpChar.writeValue(view.buffer)
+                    .catch(error => {console.log(error);})
+                    .then(_ => {
+                    logMsg("Changed measurement period for " + ucWords(panelId) + " to " + panels[panelId].measurementPeriod + "ms");
+                  });
+                }
+                logMsg('Starting notifications for ' + ucWords(panelId));
+                await panels[panelId].characteristic.startNotifications();
+                panels[panelId].characteristic.addEventListener('characteristicvaluechanged', function(event){handleIncoming(panelId, event.target.value);});
+              }
+              if (panels[panelId].properties.includes("read")) {
+                let intervalPeriod = 1000;
+                if (panels[panelId].measurementPeriod !== undefined) {
+                  intervalPeriod = panels[panelId].measurementPeriod;
+                }
+                panels[panelId].polling = setInterval(function() {
+                  if (!panels[panelId].readInProgress) {
+                    panels[panelId].readInProgress = true;
+                  panels[panelId].characteristic.readValue()
+                    .then(function(data) {
+                      handleIncoming(panelId, data);
+                     }).catch(error => {});
+                    panels[panelId].readInProgress = false;
+                  }
+                }, intervalPeriod);
+              }
+            }
+          }
+          readActiveSensors();
+        }
+      }
+
+      async function readActiveSensors() {
+        for (let panelId of activePanels) {
+          let panel = panels[panelId];
+          //if (panels[panelId].properties.includes("read") || panels[panelId].properties.includes("notify")) {
+          if (panels[panelId].properties.includes("read")) {
+            await panels[panelId].characteristic.readValue().then(function(data){handleIncoming(panelId, data);});
+          }
+        }
+      }
+
+      function handleIncoming(panelId, value) {
+        const columns = Object.keys(panels[panelId].data);
+        const typeMap = {
+          "Uint8":    {fn: DataView.prototype.getUint8,    bytes: 1},
+          "Uint16":   {fn: DataView.prototype.getUint16,   bytes: 2},
+          "Uint32":   {fn: DataView.prototype.getUint32,   bytes: 4},
+          "Float32":  {fn: DataView.prototype.getFloat32,  bytes: 4},
+          "String":   {fn: DataView.prototype.getUint8,    bytes: 1}
+        };
+
+        let packetPointer = 0, i = 0;
+        panels[panelId].structure.forEach(function(dataType) {
+          if (dataType == "String") {
+            for (var j=0; j<value.byteLength; j++) {
+              panels[panelId].data.push(value.getUint8(j));
+            }
+          }
+          else {
+            let dataViewFn = typeMap[dataType].fn.bind(value);
+            let unpackedValue = dataViewFn(packetPointer, true);
+            panels[panelId].data[columns[i]].push(unpackedValue);
+            if (panels[panelId].data[columns[i]].length > bufferSize) {
+              panels[panelId].data[columns[i]].shift();
+            }
+            packetPointer += typeMap[dataType].bytes;
+            bytesReceived += typeMap[dataType].bytes;
+            i++;
+          }
+        });
+
+        panels[panelId].rendered = false;
+        updateAllPanels();
+      }
+
+      /**
+       * @name disconnect
+       * Closes the Web Bluetooth connection.
+       */
+      async function disconnect() {
+        if (device && device.gatt.connected) {
+          device.gatt.disconnect();
+        }
+      }
+
+      function getFullId(shortId) {
+        if (shortId.length == 4) {
+          return 'adaf' + shortId + '-c332-42a8-93bd-25e905756cb8';
+        }
+        return shortId;
+      }
+
+      function logMsg(text, newline=true, sameline=false) {
+        // Update the Log
+        if (showTimestamp.checked) {
+          let d = new Date();
+          let timestamp = d.getHours() + ":" + `${d.getMinutes()}`.padStart(2, 0) + ":" +
+              `${d.getSeconds()}`.padStart(2, 0) + "." + `${d.getMilliseconds()}`.padStart(3, 0);
+          log.innerHTML += '<span class="timestamp">' + timestamp + ' -> </span>';
+          d = null;
+        }
+        if (newline) {
+          text += "<br>";
+        }
+        if (sameline) {
+          log.innerHTML = log.innerHTML.substr(0,log.innerHTML.toLowerCase().lastIndexOf("<br>")+4) + text;
+        }
+        else log.innerHTML += text;
+
+        // Remove old log content
+        if (log.textContent.split("\n").length > maxLogLength + 1) {
+          let logLines = log.innerHTML.replace(/(\n)/gm, "").split("<br>");
+          log.innerHTML = logLines.splice(-maxLogLength).join("<br>\n");
+        }  
+
+        if (autoscroll.checked) {
+          log.scrollTop = log.scrollHeight
+        }
+      }
+
+      /**
+       * @name updateTheme
+       * Sets the theme to  Adafruit (dark) mode. Can be refactored later for more themes
+       */
+      function updateTheme() {
+        // Disable all themes
+        document
+          .querySelectorAll('link[rel=stylesheet].alternate')
+          .forEach((styleSheet) => {
+            enableStyleSheet(styleSheet, false);
+          });
+
+        if (darkMode.checked) {
+          enableStyleSheet(darkSS, true);
+        } else {
+          enableStyleSheet(lightSS, true);
+        }
+      }
+
+      function enableStyleSheet(node, enabled) {
+        node.disabled = !enabled;
+      }
+
+      /**
+       * @name reset
+       * Reset the Panels, Log, and associated data
+       */
+      async function reset() {
+        // Clear the data
+        clearGraphData();
+
+        // Clear all Panel Data
+        for (let panelId of activePanels) {
+          let panel = panels[panelId];
+          if (panels[panelId].data !== undefined) {
+            Object.entries(panels[panelId].data).forEach(([field, item], index) => {
+              panels[panelId].data[field] = [];
+            });
+          }
+          panels[panelId].rendered = false;
+        }
+
+        bytesReceived = 0;
+        colorIndex = 0;
+
+        // Clear the log
+        log.innerHTML = "";
+      }
+
+      /**
+       * @name clickConnect
+       * Click handler for the connect/disconnect button.
+       */
+      async function clickConnect() {
+        if (device && device.gatt.connected) {
+          await disconnect();
+          return;
+        }
+
+        await connect().then(_ => {toggleUIConnected(true);}).catch(() => {});
+      }
+
+      async function onDisconnected(event) {
+        let disconnectedDevice = event.target;
+
+        for (let panelId of activePanels) {
+          if (typeof panels[panelId].polling !== 'undefined') {
+            clearInterval(panels[panelId].polling);
+          }
+        }
+
+        // Loop through activePanels and remove them
+        //destroyPanels();
+
+        toggleUIConnected(false);
+        logMsg('Device ' + disconnectedDevice.name + ' is disconnected.');
+
+        device = undefined;
+        currentBoard = undefined;
+      }
+
+      /**
+       * @name clickAutoscroll
+       * Change handler for the Autoscroll checkbox.
+       */
+      async function clickAutoscroll() {
+        saveSetting('autoscroll', autoscroll.checked);
+      }
+
+      /**
+       * @name clickTimestamp
+       * Change handler for the Show Timestamp checkbox.
+       */
+      async function clickTimestamp() {
+        saveSetting('timestamp', showTimestamp.checked);
+      }
+
+      /**
+       * @name clickDarkMode
+       * Change handler for the Dark Mode checkbox.
+       */
+      async function clickDarkMode() {
+        updateTheme();
+        saveSetting('darkmode', darkMode.checked);
+      }
+
+
+      async function clickGetConfig() {
+          //let packet = encodePacket(panelId, values);
+          var enc = new TextEncoder();
+          panels["uart_tx"].characteristic.writeValue(enc.encode("cc"));
+      }
+
+      async function clickSyncTime() {
+          //let packet = encodePacket(panelId, values);
+          var enc = new TextEncoder();
+          var now = new Date();
+          panels["uart_tx"].characteristic.writeValue(enc.encode("tt ".concat(now.getFullYear(), " ", now.getMonth()+1, " ", now.getDate(), " ", now.getHours(), " ", now.getMinutes(), " ", now.getSeconds())));
+      }
+
+      async function clickGetGPS() {
+          //let packet = encodePacket(panelId, values);
+          var enc = new TextEncoder();
+          panels["uart_tx"].characteristic.writeValue(enc.encode("gg"));
+      }
+
+      async function clickTakePicture() {
+          //let packet = encodePacket(panelId, values);
+          var enc = new TextEncoder();
+          panels["uart_tx"].characteristic.writeValue(enc.encode("ii"));
+      }
+
+      async function clickReloadCfg() {
+          //let packet = encodePacket(panelId, values);
+          var enc = new TextEncoder();
+          panels["uart_tx"].characteristic.writeValue(enc.encode("rr"));
+      }
+
+      async function clickPreview() {
+          //let packet = encodePacket(panelId, values);
+          var enc = new TextEncoder();
+          panels["uart_tx"].characteristic.writeValue(enc.encode("pp"));
+          reset();
+      }
+
+      /**
+       * @name clickKnownOnly
+       * Change handler for the Show Only Known Devices checkbox.
+       */
+      async function clickKnownOnly() {
+        saveSetting('knownonly', knownOnly.checked);
+      }
+
+      /**
+       * @name clickClear
+       * Click handler for the clear button.
+       */
+      async function clickClear() {
+        reset();
+      }
+
+      function convertJSON(chunk) {
+        try {
+          let jsonObj = JSON.parse(chunk);
+          return jsonObj;
+        } catch (e) {
+          return chunk;
+        }
+      }
+
+      function toggleUIConnected(connected) {
+        let lbl = 'Connect';
+        if (connected) {
+          lbl = 'Disconnect';
+        }
+        butConnect.textContent = lbl;
+      }
+
+      function loadAllSettings() {
+        // Load all saved settings or defaults
+        autoscroll.checked = loadSetting('autoscroll', true);
+        showTimestamp.checked = loadSetting('timestamp', false);
+        darkMode.checked = loadSetting('darkmode', false);
+      }
+
+      function loadSetting(setting, defaultValue) {
+        let value = JSON.parse(window.localStorage.getItem(setting));
+        if (value == null) {
+          return defaultValue;
+        }
+
+        return value;
+      }
+
+      function saveSetting(setting, value) {
+        window.localStorage.setItem(setting, JSON.stringify(value));
+      }
+
+      function updateAllPanels() {
+        for (let panelId of activePanels) {
+          updatePanel(panelId);
+        }
+      }
+
+      function updatePanel(panelId) {
+        if (!panels[panelId].rendered) {
+          if (panels[panelId].panelType == "text") {
+            updateTextPanel(panelId);
+          } else if (panels[panelId].panelType == "graph") {
+            updateGraphPanel(panelId);
+          } else if (panels[panelId].panelType == "model3d") {
+            update3dPanel(panelId);    
+          } else if (panels[panelId].panelType == "custom") {
+            updateCustomPanel(panelId);
+          }
+          panels[panelId].rendered = true;
+        }
+      }
+
+      function createPanel(panelId) {
+        if (panels.hasOwnProperty(panelId)) {
+          if (panels[panelId].panelType == "text") {
+            createTextPanel(panelId);
+          } else if (panels[panelId].panelType == "graph") {
+            createGraphPanel(panelId);
+          } else if (panels[panelId].panelType == "color") {
+            createColorPanel(panelId);
+          } else if (panels[panelId].panelType == "model3d") {
+            create3dPanel(panelId);
+          } else if (panels[panelId].panelType == "custom") {
+            createCustomPanel(panelId);
+          }
+          panels[panelId].rendered = true;
+          activePanels.push(panelId);
+        }
+      }
+
+      function destroyPanels() {
+        let activePanelCount = activePanels.length;
+        for (let i = 0; i < activePanelCount; i++) {
+          let itemToRemove = activePanels.pop();
+          document.querySelector("#dashboard > #" + itemToRemove).remove();
+        }
+      }
+
+      function clearGraphData() {
+        for (let panelId of activePanels) {
+          let panel = panels[panelId];
+          if (panel.panelType == "graph") {
+            panel.graph.clear();
+          }
+        }
+      }
+
+      function ucWords(text) {
+        return text.replace('_', ' ').toLowerCase().replace(/(?<= )[^\s]|^./g, a=>a.toUpperCase())
+      }
+
+      function loadPanelTemplate(panelId, templateId) {
+        if (templateId == undefined) {
+          templateId = panels[panelId].panelType;
+        }
+          // Create Panel from Template
+        let panelTemplate = document.querySelector("#templates > ." + templateId).cloneNode(true);
+        panelTemplate.id = panelId;
+        if (panels[panelId].title !== undefined) {
+          panelTemplate.querySelector(".title").innerHTML = panels[panelId].title;
+        } else {
+          panelTemplate.querySelector(".title").innerHTML = ucWords(panelId);
+        }
+
+        dashboard.appendChild(panelTemplate)
+
+        return panelTemplate;
+      }
+
+      /* Text Panel */
+      function createTextPanel(panelId) {
+        // Create Panel from Template
+        let panelTemplate = loadPanelTemplate(panelId);
+        panelTemplate.querySelector(".content p").innerHTML = "-";
+        if (panels[panelId].style !== undefined) {
+          panelTemplate.querySelector(".content").style = panels[panelId].style;
+        }
+      }
+
+      function updateTextPanel(panelId) {
+        let panelElement = document.querySelector("#dashboard > #" + panelId);
+        let panelContent = [];
+        let value = "";
+        Object.entries(panels[panelId].data).forEach(([field, item], index) => {
+          if (panels[panelId].data[field].length > 0) {
+            value += panels[panelId].data[field].pop();
+            panels[panelId].data[field] = [];
+            if (panels[panelId].textFormat !== undefined) {
+              value = panels[panelId].textFormat(value);
+            }
+          }
+          if (value !== "") {
+            panelContent.push(value);
+          }
+        });
+        if (panelContent.length == 0) {
+          panelContent = "-";
+        } else {
+          panelContent = panelContent.join("<br>");
+        }
+        panelElement.querySelector(".content p").innerHTML = panelContent;
+      }
+
+      /* Graph Panel */
+      function createGraphPanel(panelId) {
+        // Create Panel from Template
+        let panelTemplate = loadPanelTemplate(panelId);
+        let canvas = panelTemplate.querySelector(".content canvas");
+
+        // Create a canvas
+        panels[panelId].graph = new Graph(canvas);
+        panels[panelId].graph.create(false);
+
+        // Setup graph
+        Object.entries(panels[panelId].data).forEach(([field, item], index) => {
+          panels[panelId].graph.addDataSet(field, colors[(colorIndex + index) % colors.length]);
+          // Create text spans for each dataset and set the color here
+          let textField = document.createElement('div');
+          textField.style.color = colors[(colorIndex + index) % colors.length];
+          textField.id = field;
+          panelTemplate.querySelector(".content .text p").appendChild(textField);
+        });
+        colorIndex += Object.entries(panels[panelId].data).length;
+
+        panels[panelId].graph.update();
+      }
+
+      function updateGraphPanel(panelId) {
+        let panelElement = document.querySelector("#dashboard > #" + panelId);
+        let panelContent = [];
+        let multipleEntries = Object.entries(panels[panelId].data).length > 1;
+
+        // Set Graph Data to match
+        Object.entries(panels[panelId].data).forEach(([field, item], index) => {
+          if (panels[panelId].data[field].length > 0) {
+            let value = null;
+            while(panels[panelId].data[field].length > 0) {
+              value = panels[panelId].data[field].shift();
+              panels[panelId].graph.addValue(index, value, false);
+            }
+            if (panels[panelId].textFormat !== undefined) {
+              value = panels[panelId].textFormat(value);
+            }
+            if (value !== null) {
+              if (multipleEntries) {
+                value = ucWords(field) + ": " + value; 
+              }
+              panelElement.querySelector(".content .text p #" + field).innerHTML = value;
+            }
+          } else {
+            panels[panelId].graph.clearValues(index);
+            if (multipleEntries) {
+              panelElement.querySelector(".content .text p #" + field).innerHTML = ucWords(field) + ': -';
+            } else {
+              panelElement.querySelector(".content .text p #" + field).innerHTML = '-';
+            }
+          }
+
+        });
+
+        panels[panelId].graph.flushBuffer();
+      }
+
+      /* Color Panel */
+      function createColorPanel(panelId) {
+        // Create Panel from Template
+        let panelTemplate = loadPanelTemplate(panelId);
+
+        let container = panelTemplate.querySelector('.content div');
+        panels[panelId].colorPicker = colorjoe.rgb(container, 'red');
+
+        // Update the panel packet sequence to match the number of LEDs on board
+        panels[panelId].packetSequence = panels[panelId].structure.slice(0, 2);
+        let dataType = panels[panelId].structure[2].replace(/\[\]/, '');
+        for (let i = 0; i < currentBoard.neopixels * 3; i++) {
+          panels[panelId].packetSequence.push(dataType);
+        }
+
+        // RGB Color Picker
+        function updateModelLed(color) {
+          logMsg("Changing neopixel to " + color.hex());
+          let orderedColors = adjustColorOrder(Math.round(color.r() * 255),
+                                               Math.round(color.g() * 255),
+                                               Math.round(color.b() * 255));
+          let values = [0, 1].concat(new Array(currentBoard.neopixels).fill(orderedColors).flat());
+          let packet = encodePacket(panelId, values);
+          panels[panelId].characteristic.writeValue(packet)
+          .catch(error => {console.log(error);})
+          .then(_ => {});
+        }
+
+        function adjustColorOrder(red, green, blue) {
+          // Add more as needed
+          switch(currentBoard.colorOrder) {
+            case 'GRB':
+              return [green, red, blue];
+            default:
+              return [red, green, blue];
+          }
+        }
+
+        panels[panelId].colorPicker.on('done', updateModelLed);
+      }
+
+      /* 3D Panel */
+      function create3dPanel(panelId) {
+        let panelTemplate = loadPanelTemplate(panelId);
+        let canvas = panelTemplate.querySelector(".content canvas");
+
+        // Make it visually fill the positioned parent
+        canvas.style.width ='100%';
+        canvas.style.height='100%';
+        // ...then set the internal size to match
+        canvas.width  = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+
+        // Create a 3D renderer and camera
+        panels[panelId].renderer = new THREE.WebGLRenderer({canvas});
+
+        panels[panelId].camera = new THREE.PerspectiveCamera(45, canvas.width/canvas.height, 0.1, 100);
+        panels[panelId].camera.position.set(0, -5, 30);
+
+        // Set up the Scene
+        panels[panelId].scene = new THREE.Scene();
+        panels[panelId].scene.background = new THREE.Color('black');
+        {
+          const skyColor = 0xB1E1FF;  // light blue
+          const groundColor = 0x999999;  // gray
+          const intensity = 1;
+          const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
+          panels[panelId].scene.add(light);
+        }
+
+        {
+          const color = 0xFFFFFF;
+          const intensity = 3;
+          const light = new THREE.DirectionalLight(color, intensity);
+          light.position.set(0, 10, 0);
+          light.target.position.set(-5, 0, 0);
+          panels[panelId].scene.add(light);
+          panels[panelId].scene.add(light.target);
+        }
+
+        {
+          const color = 0xFFFFFF;
+          const intensity = 1;
+          const light = new THREE.DirectionalLight(color, intensity);
+          light.position.set(0, -10, 0);
+          light.target.position.set(5, 0, 0);
+          panels[panelId].scene.add(light);
+          panels[panelId].scene.add(light.target);
+        }
+
+        function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
+          const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.5;
+          const halfFovY = THREE.MathUtils.degToRad(camera.fov * 0.5);
+          const distance = halfSizeToFitOnScreen / Math.tan(halfFovY);
+          // compute a unit vector that points in the direction the camera is now
+          // in the xz plane from the center of the box
+          const direction = (new THREE.Vector3())
+              .subVectors(camera.position, boxCenter)
+              .multiply(new THREE.Vector3(1, 0, 1))
+              .normalize();
+
+          // move the camera to a position distance units way from the center
+          // in whatever direction the camera was from the center already
+          camera.position.copy(direction.multiplyScalar(distance).add(boxCenter));
+
+          // pick some near and far values for the frustum that
+          // will contain the box.
+          camera.near = boxSize / 100;
+          camera.far = boxSize * 100;
+
+          camera.updateProjectionMatrix();
+
+          // point the camera to look at the center of the box
+          camera.lookAt(boxCenter.x, boxCenter.y, boxCenter.z);
+        }
+
+        {
+          const gltfLoader = new GLTFLoader();
+          gltfLoader.load('https://cdn.glitch.com/eeed3166-9759-4ba5-ba6b-aed272d6db80%2Fbunny.glb', (gltf) => {
+            const root = gltf.scene;
+            panels[panelId].model = root;
+            panels[panelId].scene.add(root);
+
+            const box = new THREE.Box3().setFromObject(root);
+
+            const boxSize = box.getSize(new THREE.Vector3()).length();
+            const boxCenter = box.getCenter(new THREE.Vector3());
+
+            frameArea(boxSize * 1.25, boxSize, boxCenter, panels[panelId].camera);
+          });
+        }
+      }
+
+      function update3dPanel(panelId) {
+        let panelElement = document.querySelector("#dashboard > #" + panelId);
+
+        function resizeRendererToDisplaySize(renderer) {
+          const canvas = renderer.domElement;
+          const width = canvas.clientWidth;
+          const height = canvas.clientHeight;
+          const needResize = canvas.width !== width || canvas.height !== height;
+          if (needResize) {
+            renderer.setSize(width, height, false);
+          }
+          return needResize;
+        }
+        // Set Graph Data to match
+        if (resizeRendererToDisplaySize(panels[panelId].renderer)) {
+          const canvas = panels[panelId].renderer.domElement;
+          panels[panelId].camera.aspect = canvas.clientWidth / canvas.clientHeight;
+          panels[panelId].camera.updateProjectionMatrix();
+        }
+
+        let quaternion = {w: 1, x: 0, y: 0, z:0};
+        Object.entries(panels[panelId].data).forEach(([field, item], index) => {
+          if (panels[panelId].data[field].length > 0) {
+            let value = panels[panelId].data[field].pop(); // Show only the last piece of data
+            quaternion[field] = value;
+            panels[panelId].data[field] = [];
+          }
+        });
+
+        if (panels[panelId].model != undefined) {
+          let rotObjectMatrix = new THREE.Matrix4();
+          let rotationQuaternion = new THREE.Quaternion(quaternion.y, quaternion.z, quaternion.x, quaternion.w);
+          rotObjectMatrix.makeRotationFromQuaternion(rotationQuaternion);
+          panels[panelId].model.quaternion.setFromRotationMatrix(rotObjectMatrix);      
+        }
+
+        panels[panelId].renderer.render(panels[panelId].scene, panels[panelId].camera);
+      }
+
+      function createCustomPanel(panelId) {
+        if (panels[panelId].condition === undefined || panels[panelId].condition()) {
+          if (panels[panelId].create != undefined) {
+            panels[panelId].create(panelId);  
+          }
+        }
+      }
+
+      function updateCustomPanel(panelId) {
+        if (panels[panelId].condition === undefined || panels[panelId].condition()) {
+          if (panels[panelId].update != undefined) {
+            panels[panelId].update(panelId);
+          }
+        }
+      }
+
+      function createMockPanels() {
+        currentBoard = boards.CLUE;
+        for (let panelId of Object.keys(panels)) {
+          if (panels[panelId].condition == undefined || panels[panelId].condition()) {        
+            // Non-custom ones such as battery are always active
+            createPanel(panelId);
+          }
+        }  
+      }
+    
+    </script>
+  </head>  
+  <body>
+    <header class="header">
+        <div class="left">
+          PiCam Dashboard
+      </div>
+      <div class="right">
+      <div class="right">
+        <label for="darkmode">
+          Dark Mode
+        </label>
+        <div class="onoffswitch">
+          <input type="checkbox" name="darkmode" class="onoffswitch-checkbox" id="darkmode">
+          <label class="onoffswitch-label" for="darkmode">
+            <span class="onoffswitch-inner"></span>
+            <span class="onoffswitch-switch"></span>
+          </label>
+        </div>
+      </div>
+        <button id="butConnect" type="button">Connect</button>
+      </div>
+    </header>
+    
+    <main class="main">
+      <div id="notSupported" class="notSupported">
+        Sorry, <b>Web Bluetooth</b> is not supported on this device, make sure you're 
+        running Chrome 56 or later. If you are running linux, make sure you have enabled the 
+        <code>#enable-experimental-web-platform-features</code> flag in
+        <code>chrome://flags</code>
+      </div>
+      
+      <footer class="footer">
+        <div class="left">      
+          <label for="autoscroll">Autoscroll</label>
+          <div class="onoffswitch">
+            <input type="checkbox" name="autoscroll" class="onoffswitch-checkbox" id="autoscroll">
+            <label class="onoffswitch-label" for="autoscroll">
+              <span class="onoffswitch-inner"></span>
+              <span class="onoffswitch-switch"></span>
+            </label>
+          </div>
+        </div>
+        <div class="left"> 
+          <label for="showTimestamp">Timestamp</label>
+          <div class="onoffswitch">
+            <input type="checkbox" name="showTimestamp" class="onoffswitch-checkbox" id="showTimestamp">
+            <label class="onoffswitch-label" for="showTimestamp">
+              <span class="onoffswitch-inner"></span>
+              <span class="onoffswitch-switch"></span>
+            </label>
+          </div>
+      </div>
+      <div class="left">      
+        <button id="butClear" type="button">Clear Text</button>
+      </div>
+    </footer>
+      
+      <div id="log"></div>
+      
+      
+  <div class="commands">
+    <div class="left">   
+      <button id="cmdGetConfig" type="button">Get Config</button>
+    </div>
+    <div class="left">   
+      <button id="cmdSyncTime" type="button">Sync Time</button>
+    </div> 
+    <div class="left">   
+      <button id="cmdGetGPS" type="button">Get GPS Fix</button>
+    </div>  
+    <div class="left">  
+      <button id="cmdTakeImage" type="button">Take Picture</button>
+    </div>
+    <div class="left">  
+      <button id="cmdPreview" type="button">Get Preview</button>
+    </div>
+    <div class="left">  
+      <button id="cmdReloadCfg" type="button">Reload Config<br>(New Run)</button>
+    </div>
+   </div>   
+    </main>      
+      
+    <div id="dashboard">
+      
+      <div class="battery-level">
+        <div class="title">
+          Battery
+        </div>
+          <div class="content">
+          <div class="battery" data-toggle="tooltip" title="Battery Level: 100%">
+            <span class="level" style="width:100%;"></span>
+          </div>
+          <div class="percentage">
+            100%
+          </div>
+        </div>
+      </div>
+      
+      <div class="image_count text">
+        <div class="title">
+          Image Count<br>/Total Runs
+        </div>
+        <div class="content">
+          <p>
+          <span id="imgs">0</span>/<span id="runs">0</span>            
+          </p>
+        </div>
+      </div>
+      
+      <div class="disk_space text">
+        <div class="title">
+          Free/Total<br>Disk Space
+        </div>
+        <div class="content">
+          <p>
+          0/0<br>GB            
+          </p>
+        </div>
+      </div>
+      
+      <div class="location text">
+        <div class="title">
+          Location<br>(Lat/Lon)
+        </div>
+        <div class="content">
+          <p>           
+          </p>
+        </div>
+      </div>
+      
+      <div class="image" hidden>
+        <div class="title">
+          Image Preview
+        </div>
+        <div class="content">
+          <img src="none" alt="No image loaded">
+        </div>
+      </div>
+      
+    </div>      
+
+  
+    <div id="templates">
+      <div class="text">
+        <div class="title">
+          title
+        </div>
+        <div class="content">
+          <p>
+          content            
+          </p>
+        </div>
+      </div>
+      <div class="graph">
+        <div class="title">
+          title
+        </div>
+        <div class="content">
+          <div class="text">
+            <p></p>          
+          </div>
+          <div class="chart">
+            <canvas></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="color">
+        <div class="title">
+          title
+        </div>
+        <div class="content">
+          <div></div>
+        </div>
+      </div>
+      <div class="model3d">
+        <div class="title">
+          title
+        </div>
+        <div class="content">
+          <canvas></canvas>
+        </div>
+      </div>
+      
+      <div class="play-button">
+        <div class="title">
+          title
+        </div>
+        <div class="content">
+          <div class="button">
+            <span></span>
+          </div>
+        </div>
+      </div>
+      <div class="onboard-buttons">
+        <div class="title">
+          title
+        </div>
+        <div class="content">
+        </div>
+      </div>
+      <div class="onboard-switch">
+        <div class="title">
+          title
+        </div>
+        <div class="content">
+          <div class="onoffswitch">
+            <input type="checkbox" name="onboardSwitch" class="onoffswitch-checkbox" id="onboardSwitch" disabled>
+            <label class="onoffswitch-label" for="onboardSwitch">
+              <span class="onoffswitch-inner"></span>
+              <span class="onoffswitch-switch"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="roundbutton">
+        <div class="buttonpanel">
+          <div class="roundbtn">
+            <div class="inner">
+              <span class="text"></span>
+            </div>
+          </div>
+        </div>          
+      </div>
+    </div>
+  </body>
+</html>
