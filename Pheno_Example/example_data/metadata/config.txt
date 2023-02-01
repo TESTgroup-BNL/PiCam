@@ -1,2 +1,0 @@
-start_x=1
-gpu_mem=128
