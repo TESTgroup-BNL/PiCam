@@ -15,4 +15,9 @@ PiCAM is a custom-grade phenocam system designed by the [Terrestrial Ecosystem S
 * Power Switch/Driver (TPS2080DR; Texas Instruments). Example source: https://www.digikey.com/en/products/detail/texas-instruments/TPS2080DR/1670863?s=N4IgTCBcDa4JwDYC0BmOKCsyCMSByAIiALoC%2BQA
 ### 2.3. Power Supply
 * Lithium Iron AA (Energizer; Part number: L91). Example source: https://www.energizer.com/batteries/energizer-ultimate-lithium-batteries
+### 2.4. Other Accessories
+* Case (Flashlight; Fulton Industries). Example source: https://www.armynavysales.com/angle-head-flashlight-mx-991-u-me124-558.html
+* Memory card (32GB Micro SD Card; Samsung). Users can choose the size depend on need
+* SOIC-8 to DIP Breakout (BOB-13655; Sparkfun). Example source: https://www.digikey.com/en/products/detail/sparkfun-electronics/BOB-13655/5528943?s=N4IgTCBcDaIIwFYBsAOAtHOYDMaByAIiALoC%2BQA
+* SWD Connector (10-pin 0.5mm; Samtec Inc.). Example source: https://www.digikey.com/en/products/detail/samtec-inc/SHF-105-01-F-D-SM/8410395
 
