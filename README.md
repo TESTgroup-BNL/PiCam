@@ -1,10 +1,18 @@
 ## Backgound
 PiCAM is a custom-grade phenocam system designed by the [Terrestrial Ecosystem Science & Technology group](https://www.bnl.gov/envsci/testgroup/) at Brookhaven National Laboratory. The PiCAM has the advantage of being compact, low power cost, and lightweight, partially suitable for Arctic environments. It was desinged to operate for at least a fiscal year (6 images per day) with three AA lithium batteries. Given its compact and light-weight feature, PiCAM can be deployed on small hosts (e.g., stakes), addressing the challenges of deploying heavy infrastructure commonly needed for commercial phenocams.
+
 #### Below, we describe the parts, assemble, and basic operation of PiCAMs. Please also refer to XXX for more detailed technical description of the PiCAM and example applications in Arctic field sites. 
+
 ## 1. Parts for PiCAM
-### 2.1. Sensor Suite:
+### 2.1. Sensor Suite
 * Camera (Raspberry Pi Camera v2; Raspberry Pi Foundation). Example source: https://www.raspberrypi.com/products/camera-module-v2/
 * Camera cable (FFC Ribbon Cable; Generic). Example source: https://www.amazon.com/dp/B0716TB6X3/ref=twister_B08NTCX71W?_encoding=UTF8&psc=1
 * GPS module (MINI GPS PA1010D STEMMA QT; Adafruit). Example source: https://www.digikey.com/en/products/detail/adafruit-industries-llc/4415/10709724
 * GPS cable (FLEXIBLE QWIIC CABLE - 500MM; Sparkfun). Example source: https://www.digikey.com/en/products/detail/sparkfun-electronics/PRT-17257/13629026
+### 2.2. Central Control
+* Supervisory controller (nrf52840; Nordic). Example source: https://www.digikey.com/en/products/detail/nordic-semiconductor-asa/NRF52840-DONGLE/9491124
+* Camera controller (Raspberry Pi Zero; Raspberry Pi Foundation). Example source: https://www.raspberrypi.com/products/raspberry-pi-zero/
+* Power Switch/Driver (TPS2080DR; Texas Instruments). Example source: https://www.digikey.com/en/products/detail/texas-instruments/TPS2080DR/1670863?s=N4IgTCBcDa4JwDYC0BmOKCsyCMSByAIiALoC%2BQA
+### 2.3. Power Supply
+* Lithium Iron AA (Energizer; Part number: L91). Example source: https://www.energizer.com/batteries/energizer-ultimate-lithium-batteries
 
