@@ -21,3 +21,19 @@ PiCAM is a custom-grade phenocam system designed by the [Terrestrial Ecosystem S
 * SOIC-8 to DIP Breakout (BOB-13655; Sparkfun). Example source: https://www.digikey.com/en/products/detail/sparkfun-electronics/BOB-13655/5528943?s=N4IgTCBcDaIIwFYBsAOAtHOYDMaByAIiALoC%2BQA
 * SWD Connector (10-pin 0.5mm; Samtec Inc.). Example source: https://www.digikey.com/en/products/detail/samtec-inc/SHF-105-01-F-D-SM/8410395
 
+## 2. PiCAM Assembly Guidance
+A step-by-step instruction on how to assemble a PiCAM can be found at: https://github.com/TESTgroup-BNL/PiCam/wiki/PiCAM-assembly. Note that the assemble needed 3-D printed cases for housing the parts inside a Flashlight case. The design of these 3-D printed cases can be found at:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
