@@ -1,0 +1,2 @@
+# Backgound
+The PiCAM is a custom-grade phenocam system designed by the Terrestrial Ecosystem Science & Technology group at Brookhaven National Laboratory. The PiCAM has the advantage of being compact, low power cost, and lightweight, partially suitable for Arctic environments. It can operate for at least a year (6 images per day) with three AA lithium batteries. The PiCAM can be deployed on small hosts (e.g., stakes), addressing the challenges of deploying heavy infrastructure commonly needed for commercial phenocams.
