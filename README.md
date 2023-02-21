@@ -43,5 +43,5 @@ A step-by-step instruction on how to assemble a PiCAM can be found at: https://g
 
 
 
-
-
+## Point of Contact:
+Shawn Serbin: sserbin@bnl.gov Andrew Mcmahon: amcmahon@bnl.gov Daryl Yang: dediyang@bnl.gov Jeremiah Anderson: jeanderson@bnl.gov
