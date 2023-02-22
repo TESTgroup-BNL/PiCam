@@ -52,6 +52,5 @@ Preview image: When triggered, this powers up the Pi, captures a low resolution 
 ###### Important:  While connected to Bluetooth (UART or dashboard), the camera is consuming about 10 times as much power as in “normal” standby, so it is important to not stay connected indefinitely and to remember to disconnect!  (If a connection is dropped by device moving out a of range or interference, the camera will automatically drop the connection rather than being stuck in connected mode.)
 ![image](https://user-images.githubusercontent.com/41143480/220488276-373023ed-733e-4ed0-a034-7da8dce490a3.png)
 
-
 ## Point of Contact:
 Shawn Serbin: sserbin@bnl.gov Andrew Mcmahon: amcmahon@bnl.gov Daryl Yang: dediyang@bnl.gov Jeremiah Anderson: jeanderson@bnl.gov
