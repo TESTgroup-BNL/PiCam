@@ -28,21 +28,30 @@ A step-by-step instruction on how to assemble a PiCAM can be found at: https://g
 # Andrew please help!!!
 
 ## 4. Communication with external devices
-#### 4.1. Cell phone
-* Step 1: Download and install BluefruitConnect app on iOS or Andriod cell phone
-* Step 2: Open BluefruitConnect app. Once the app is turned up, it will automatically scan for Bluetooth devices. Once you find the target PiCAM, select the PiCAM and 'connect'. 
+#### 4.1. The Advertising String
+Visible without connecting or any specific software.  Anything (phone, computer, etc.) that can scan for Bluetooth devices should be able to “see” it.
+Format: PiCam <ID> <Battery Level as %> <images captured in current run> <date> <time>
 
+#### 4.2. Serial UART Connection
+Provides a terminal-like text interface.  The Adafruit Bluefruit Connect app works great for this and is available for Android and iOS.
+Usage: Once connected, the app will receive periodic strings from the camera with basic status information.  Sending any character will print out a menu with several options:
+'c': Print cfg
+'g': Get GPS fix
+'i': Capture img now
+'r': Reload cfg
+'t [YYYY,MM,DD,hh,mm,ss]': Set time
 
-#### 4.2. Laptop
+Sending the specified character will trigger the command.  Before entering the menu, sending a double character of any command will execute it without displaying the menu.  For example, to quickly trigger getting a GPS fix, sending ‘gg’ will immediately start that command.
+![image](https://user-images.githubusercontent.com/41143480/220488023-c5d727c0-c4cc-4445-b313-9fa5c137dc06.png)
 
+#### 4.3. Web Dashboard
+The web dashboard provides the most remote functionality including all the items from the UART menu as well as getting preview images and syncing time to the host.  It displays the UART data as a text feed and additionally parsing it to better display the data.
+The dashboard utilizes Web Bluetooth, which is currently an experimental API but has reasonable support Chrome (the progress of adoption can be checked here).  Nevertheless, some bugs and changes should be expected as this continues to develop.  The current site being used for testing is hosted at https://web-picam.glitch.me/, but should be cached offline for use in the field.  Tip: Connecting can take 10-15 seconds; if the Bluetooth icon hasn’t appeared on the tab yet, clicking connect again sometimes does the trick.  Other times it causes a disconnect or a “double connection” where everything is printed twice (though commands still work fine). 
+  
+Preview image: When triggered, this powers up the Pi, captures a low resolution image and transfers it to the nrf52840, which finally transfers it to the dashboard.  Transferring from the Pi to the nrf52840 can be very slow (it’s 230400 baud serial), so it may take 15-30 seconds even for a small image.  The Bluetooth transfer is generally much faster, taking only a few seconds.  Chrome can be picky about rendering the image once it’s received; if it isn’t displayed immediately, try opening/switching to a different tab and then back to force it to redraw.
 
-
-
-
-
-
-
-
+###### Important:  While connected to Bluetooth (UART or dashboard), the camera is consuming about 10 times as much power as in “normal” standby, so it is important to not stay connected indefinitely and to remember to disconnect!  (If a connection is dropped by device moving out a of range or interference, the camera will automatically drop the connection rather than being stuck in connected mode.)
+![image](https://user-images.githubusercontent.com/41143480/220488276-373023ed-733e-4ed0-a034-7da8dce490a3.png)
 
 
 ## Point of Contact:
