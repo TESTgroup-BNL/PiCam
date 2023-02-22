@@ -29,6 +29,8 @@ A step-by-step instruction on how to assemble a PiCAM can be found at: https://g
 
 ## 4. Communication with external devices
 #### 4.1. Cell phone
+* Step 1: Download and install BluefruitConnect app on iOS or Andriod cell phone
+* Step 2: Open BluefruitConnect app. Once the app is turned up, it will automatically scan for Bluetooth devices. Once you find the target PiCAM, select the PiCAM and 'connect'. 
 
 
 #### 4.2. Laptop
