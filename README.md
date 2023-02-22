@@ -42,7 +42,6 @@ Usage: Once connected, the app will receive periodic strings from the camera wit
 't [YYYY,MM,DD,hh,mm,ss]': Set time
 
 Sending the specified character will trigger the command.  Before entering the menu, sending a double character of any command will execute it without displaying the menu.  For example, to quickly trigger getting a GPS fix, sending ‘gg’ will immediately start that command.
-![image](https://user-images.githubusercontent.com/41143480/220488023-c5d727c0-c4cc-4445-b313-9fa5c137dc06.png)
 
 #### 4.3. Web Dashboard
 The web dashboard provides the most remote functionality including all the items from the UART menu as well as getting preview images and syncing time to the host.  It displays the UART data as a text feed and additionally parsing it to better display the data.
