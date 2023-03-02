@@ -29,4 +29,4 @@ Adafruit nRF platform wrapper: https://github.com/dmpolukhin/Adafruit_nRF52_Ardu
 
 
 ## Point of Contact:
-Shawn Serbin: sserbin@bnl.gov Andrew Mcmahon: amcmahon@bnl.gov Daryl Yang: dediyang@bnl.gov Jeremiah Anderson: jeanderson@bnl.gov Wouter Hantson: wouter.hantson@umaine.com
+Shawn Serbin: sserbin@bnl.gov Andrew Mcmahon: amcmahon@bnl.gov Daryl Yang: dediyang@bnl.gov Jeremiah Anderson: jeanderson@bnl.gov Wouter Hantson: wouter.hantson@umaine.edu
