@@ -22,11 +22,10 @@ PiCAM is a custom-grade phenocam system designed by the [Terrestrial Ecosystem S
 * SWD Connector (10-pin 0.5mm; Samtec Inc.). Example source: https://www.digikey.com/en/products/detail/samtec-inc/SHF-105-01-F-D-SM/8410395
 
 ## 2. PiCAM Assembly, Programming, and Operation Guidance
-A step-by-step instruction on how to assemble, program, and operate a PiCAM can be found at: https://github.com/TESTgroup-BNL/PiCam/wiki. Note that the assemble needed 3-D printed cases for housing the parts inside a Flashlight case. The design of these 3-D printed cases can be found at: (Andrew, Jeremiah, please make sure that we include this in the package). This guidance also include detailed instructions on how to program a PiCAM after assembly, as well how to operate a PiCAM using externel cell phone or latlop devices.
+A step-by-step instruction on how to assemble, program, and operate a PiCAM can be found at: https://github.com/TESTgroup-BNL/PiCam/wiki. Note that the assemble needed 3-D printed cases for housing the parts inside a Flashlight case. The design of these 3-D printed cases can be found at: https://github.com/TESTgroup-BNL/PiCam/tree/main/CAD. This guidance also include detailed instructions on how to program a PiCAM after assembly, as well how to operate a PiCAM using externel cell phone or latlop devices.
 
 ## Other Resources:
 Adafruit nRF platform wrapper: https://github.com/dmpolukhin/Adafruit_nRF52_Arduino/tree/master/cores/nRF5
-
 
 ## Point of Contact:
 Shawn Serbin: sserbin@bnl.gov Andrew Mcmahon: amcmahon@bnl.gov Daryl Yang: dediyang@bnl.gov Jeremiah Anderson: jeanderson@bnl.gov Wouter Hantson: wouter.hantson@umaine.edu
