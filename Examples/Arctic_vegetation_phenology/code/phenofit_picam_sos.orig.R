@@ -1,42 +1,38 @@
 ###########################################################################################
 #
-#  This R script demonstrates the processing of example PiCam timelapse data
-#   from Alaska
+#  this script perform 
 #
-# @AUTHORS: Daryl Yang, Shawn P. Serbin
-#
-#    --- Last updated:  2023.06.30 By Shawn P. Serbin <sserbin@bnl.gov>
+#    --- Last updated:  2021.06.22 By Daryl Yang <dediyang@bnl.gov>
 ###########################################################################################
 
 #******************** close all devices and delete all variables *************************#
 rm(list=ls(all=TRUE))   # clear workspace
 graphics.off()          # close any open graphics
 closeAllConnections()   # close any open connections to files
+dlm <- .Platform$file.sep # <--- What is the platform specific delimiter?
 #*****************************************************************************************#
 
 #****************************** load required libraries **********************************#
 ### install and load required R packages
-list.of.packages <- c("here","ggplot2", "phenopix", "zoo", "matrixStats")  
+list.of.packages <- c("ggplot2", "phenopix", "zoo", "matrixStats")  
 # check for dependencies and install if needed
-new.packages <- list.of.packages[!(list.of.packages %in% 
-                                     installed.packages()[,"Package"])]
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if(length(new.packages)) install.packages(new.packages)
 # load libraries
 invisible(lapply(list.of.packages, library, character.only = TRUE))
 
 # load helper functions
-code_dir <- file.path(here::here(),"Examples/Arctic_vegetation_phenology/code")
-helperfuns <- file.path(code_dir,"helperfuns_sos.R")
-source(helperfuns)
+helperfunDIR <- file.path("/Volumes/data2/dyang/projects/ngee_arctic/barrow/zpw/script/phenocam_processing/helperfuns.R")
+source(helperfunDIR)
 #*****************************************************************************************#
 
 #************************************ user parameters ************************************#
-# create an output directory for results
-outDIR <- file.path(here::here(),"Examples/Arctic_vegetation_phenology/pheno_results")
+# define an output directory to store outputs
+outDIR <- file.path("/Volumes/data2/dyang/projects/ngee_arctic/seward/analysis/phenology/council/picam/pheno")
 # create output directory if not exist
 if (! file.exists(outDIR)) dir.create(outDIR,recursive=TRUE)
-# create a temporary directory to use during the processes of the phenology data
-tempDIR <- file.path(outDIR, "spring")
+# creat an temporary to store files temporarily generated during the course of processing
+tempDIR <- file.path(paste0(outDIR, "/", 'spring'))
 if (! file.exists(tempDIR)) dir.create(tempDIR,recursive=TRUE)
 
 # define the first date that experiment started (when the first useful data was collected)
