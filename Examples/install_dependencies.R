@@ -9,7 +9,7 @@
 
 #--------------------------------------------------------------------------------------------------#
 req.packages <- c("devtools","dplyr","reshape2","here","ggplot2","gridExtra",
-                  "phenopix","zoo","matrixStats","outliers")
+                  "phenopix","zoo","matrixStats","outliers","osfr")
 new.packages <- req.packages[!(req.packages %in% installed.packages()[,"Package"])]
 if(length(new.packages)) install.packages(new.packages, dependencies=TRUE)
 #--------------------------------------------------------------------------------------------------#

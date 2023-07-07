@@ -59,6 +59,8 @@ rsconnect/
 ._.
 ._.DS_Store
 .DS*
+__MACOSX
 
 ### Extracted example image directory - lazy way, may want to provide the full path
 images/
+images.zip
