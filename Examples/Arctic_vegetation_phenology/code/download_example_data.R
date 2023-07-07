@@ -29,6 +29,11 @@ invisible(lapply(list.of.packages, library, character.only = TRUE))
 # For PiCAM 14 data:
 #outDIR <- file.path(here::here(),"Examples/Arctic_vegetation_phenology/example_data/alaska_picam_14")
 #
+
+# camera ID: 14
+cameraID <- "Alaska_PiCAM_14"
+out_cam_id <- "alaska_picam_14"
+
 # Primary output folder
 outDIR <- file.path(here::here(),"Examples/Arctic_vegetation_phenology/example_data/")
 # create output directory if not exist
@@ -56,22 +61,47 @@ osf_ls_files(picam_project,
              path = "example_data/Alaska_PiCAM_14/picam_images",
              pattern = "jpg")
 
-zip_file_id <- osf_ls_files(picam_project, 
-                            path = "example_data/Alaska_PiCAM_14/picam_images",
+zip_file_ids <- osf_ls_files(picam_project, 
+                            path = paste0("example_data/",cameraID,"/picam_images"),
                             pattern = "zip")
 
-# Download the zip file containing the example PiCAM 14 dataset 
-# camera ID: 14
-cam_id <- "alaska_picam_14"
+# Download the zip file containing the example PiCAM 14 dataset
 osf_retrieve_file(zip_file_id$id) %>%
-  osf_download(path = file.path(outDIR,cam_id), conflicts = "overwrite",
+  osf_download(path = file.path(outDIR,out_cam_id), conflicts = "overwrite",
                verbose = TRUE, progress = TRUE)
 #*****************************************************************************************#
 
 #*****************************************************************************************#
 # Extract/unpack example data to the same folder
-unzip(zipfile = file.path(outDIR,cam_id,"images.zip"), 
-      exdir = file.path(outDIR,cam_id))
+#unzip(zipfile = file.path(outDIR,cam_id,"images.zip"), 
+#      exdir = file.path(outDIR,cam_id))
+
+unzip(zipfile = file.path(outDIR,out_cam_id,"images.1.zip"), 
+      exdir = file.path(outDIR,out_cam_id))
+unzip(zipfile = file.path(outDIR,out_cam_id,"images.2.zip"), 
+      exdir = file.path(outDIR,out_cam_id))
+
+# create new images/ directory and combine example data 
+imagesdir <- file.path(outDIR,out_cam_id,"images")
+# create output directory if not exist
+if (! file.exists(imagesdir)) dir.create(imagesdir,recursive=TRUE)
+
+# move the images to the images directory
+file_list <- list.files(file.path(outDIR,out_cam_id,"images.1"))
+cp_task <- file.copy(from = file.path(outDIR,out_cam_id,"images.1",file_list), 
+          to = file.path(imagesdir,file_list), 
+          overwrite = TRUE)
+file_list <- list.files(file.path(outDIR,out_cam_id,"images.2"))
+cp_task <- file.copy(from = file.path(outDIR,out_cam_id,"images.2",file_list), 
+                     to = file.path(imagesdir,file_list), 
+                     overwrite = TRUE)
+rm(file_list,cp_task)
+unlink(file.path(outDIR,out_cam_id,"images.1"), recursive = TRUE)
+unlink(file.path(outDIR,out_cam_id,"images.2"), recursive = TRUE)
+# remove scratch folder if exists
+if(file.exists(file.path(outDIR,out_cam_id,"__MACOSX"))) {
+  unlink(file.path(outDIR,out_cam_id,"__MACOSX"), recursive = TRUE)
+}
 #*****************************************************************************************#
 #*
 #*TODO: Cleanup and generalize
