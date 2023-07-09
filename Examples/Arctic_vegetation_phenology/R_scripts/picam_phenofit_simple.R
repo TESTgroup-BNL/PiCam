@@ -38,13 +38,13 @@ outDIR <- file.path(here::here(),"Examples/Arctic_vegetation_phenology/pheno_res
 cam_id <- "alaska_picam_14"
 
 # which ROI to process?
-roi_name <- "birch_roi2"
+roi_name <- "birch_roi3"
 
 # fitting fall or spring phenology?
-pheno_period <- "spring" # fall, spring
+pheno_period <- "fall" # fall, spring
 
 # what year?
-pheno_year <- "2022" # 2021, 2022
+pheno_year <- "2021" # 2021, 2022
 
 # do you want to extend the data?
 extend_data <- TRUE # TRUE/FALSE
@@ -61,23 +61,23 @@ outDIR <- file.path(outDIR,roi_name,pheno_period)
 if (! file.exists(outDIR)) dir.create(outDIR,recursive=TRUE)
 
 # define the first date that experiment started (when the first useful data was collected)
-expBEG <- 120
+expBEG <- 229
 expBEG <- as.Date(expBEG, origin = as.Date(paste0(pheno_year,"-01-01")))
 # Fall example: 229
 # Spring example: 130, 140
 # define the last date that experiment ended (when the last useful data was collected)
-expEND <- 170
+expEND <- 265
 expEND <- as.Date(expEND, origin = as.Date(paste0(pheno_year,"-01-01")))
 # Fall example: 303, 280
 # Spring example: 180
 
 # define the first date that the data to be extended to
-extBEG <- 110
+extBEG <- 175
 extBEG = as.Date(extBEG, origin = as.Date(paste0(pheno_year,"-01-01")))
-# Fall example: 180
+# Fall example: 180, 175
 # Spring example: 130
 # define the last date that the data to be extended to
-extEND <- 190
+extEND <- 364
 extEND <- as.Date(extEND, origin = as.Date(paste0(pheno_year,"-01-01")))
 # Fall example: 364
 # Spring example: 190

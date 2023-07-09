@@ -104,7 +104,7 @@ rm(image_path2)
 # fall or spring phenology?
 pheno_period <- "fall" # fall, spring
 
-roi_name <- "birch_roi2"
+roi_name <- "birch_roi3"
 roi_path2 <- file.path(roi_path,roi_name,pheno_period)
 if (! file.exists(roi_path2)) dir.create(roi_path2,recursive=TRUE)
 phenopix::DrawMULTIROI(path_img_ref=file.path(image_path,fall_reference_image), 
