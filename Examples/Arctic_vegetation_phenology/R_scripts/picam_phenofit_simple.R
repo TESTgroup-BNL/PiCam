@@ -1,12 +1,22 @@
 ###########################################################################################
 #
-#  INFO HERE
+#  This R script will walk the user through an example showing how to 
+#  use the R PhenoPix package to fit a timeseries of phenocamera data
+#  from an example PiCAM dataset. The fit is completed for each 
+#  user-specified image ROI(s), also created using the R PhenoPix package
 #
+#  Note: This script assumes you have already extracted a timeseries from a
+#  from a previously generated ROI using the extract function. This script
+#  is rather cumbersome and not elegant. Its possible to create a much simpler
+#  and dynamic script to run across a range of previously extracted ROIs but 
+#  we provide this very simple example to demonstrate that the data from the
+#  PiCAM instrument can provide adequate vegetation phenology data in harsh
+#  Arctic environments.
 #
 #
 # @AUTHORS: Shawn P. Serbin, Daryl Yang
 #
-#    --- Last updated:  2023.07.08 By Shawn P. Serbin <sserbin@bnl.gov>
+#    --- Last updated:  2023.07.09 By Shawn P. Serbin <sserbin@bnl.gov>
 ###########################################################################################
 
 #******************** close all devices and delete all variables *************************#
@@ -38,7 +48,7 @@ outDIR <- file.path(here::here(),"Examples/Arctic_vegetation_phenology/pheno_res
 cam_id <- "alaska_picam_14"
 
 # which ROI to process?
-roi_name <- "birch_roi3"
+roi_name <- "alder_roi1"
 
 # fitting fall or spring phenology?
 pheno_period <- "fall" # fall, spring
@@ -64,18 +74,18 @@ if (! file.exists(outDIR)) dir.create(outDIR,recursive=TRUE)
 expBEG <- 229
 expBEG <- as.Date(expBEG, origin = as.Date(paste0(pheno_year,"-01-01")))
 # Fall example: 229
-# Spring example: 130, 140
+# Spring example: 130, 140, 145
 # define the last date that experiment ended (when the last useful data was collected)
-expEND <- 265
+expEND <- 303
 expEND <- as.Date(expEND, origin = as.Date(paste0(pheno_year,"-01-01")))
 # Fall example: 303, 280
 # Spring example: 180
 
 # define the first date that the data to be extended to
-extBEG <- 175
+extBEG <- 180
 extBEG = as.Date(extBEG, origin = as.Date(paste0(pheno_year,"-01-01")))
 # Fall example: 180, 175
-# Spring example: 130
+# Spring example: 130, 120, 110
 # define the last date that the data to be extended to
 extEND <- 364
 extEND <- as.Date(extEND, origin = as.Date(paste0(pheno_year,"-01-01")))

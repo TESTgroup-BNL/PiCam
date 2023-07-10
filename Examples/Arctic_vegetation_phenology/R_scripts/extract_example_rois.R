@@ -3,8 +3,7 @@
 #  This R script will walk the user through an example showing how to 
 #  use the R PhenoPix package to extract a timeseries of phenocamera data
 #  from an example PiCAM dataset.  The extracted data is provided for each 
-#  for each user-specified image ROI(s), also created using the R 
-#  PhenoPix package
+#  user-specified image ROI(s), also created using the R PhenoPix package
 #
 #  Note: This script assumes you have already downloaded the example
 #  PiCAM dataset(s) from the OSF.io archive to be used with these 
@@ -13,7 +12,7 @@
 #
 # @AUTHORS: Shawn P. Serbin, Daryl Yang
 #
-#    --- Last updated:  2023.07.07 By Shawn P. Serbin <sserbin@bnl.gov>
+#    --- Last updated:  2023.07.09 By Shawn P. Serbin <sserbin@bnl.gov>
 ###########################################################################################
 
 #******************** close all devices and delete all variables *************************#
@@ -195,7 +194,7 @@ rm(fall_vi_extract_output2,VI.data.Rdata)
 # fall or spring phenology?
 pheno_period <- "spring" # fall, spring
 
-roi_name <- "birch_roi2"
+roi_name <- "birch_roi3"
 roi_path2 <- file.path(roi_path,roi_name,pheno_period)
 if (! file.exists(roi_path2)) dir.create(roi_path2,recursive=TRUE)
 phenopix::DrawMULTIROI(path_img_ref=file.path(image_path,spring_reference_image), 
